@@ -1,0 +1,402 @@
+VRAM Lab — HF_DATASETS_CACHE on WSL2
+Measured 2026-09-06
+
+Fresh interpreter and empty case directories per case; actual pinned downloads and generated Arrow inventories; row digest is SHA256 over sorted-key compact UTF-8 JSON rows each followed by newline.
+One WSL host; tiny non-streaming Hub CSV dataset and model config only. No model weights, GPU inference, throughput, large-dataset storage ratio or host disk reclaim measurement. Offline check uses library offline flags plus a self-tested Python socket guard, not OS network isolation.
+
+Environment: Windows 11 Home 26200.9168; WSL 2.7.12.0; kernel 6.18.33.2-2; Ubuntu Base 24.04.4; Python 3.12.3.
+Libraries: datasets 5.0.1; huggingface_hub 1.30.0; transformers 5.16.1; pyarrow 25.0.1.
+Validation: 51 primary cases; 17 conditions x 3 fresh processes; no semantic failures.
+Python/package/script file hashes unchanged: 8210; installed distributions: 47.
+Independent CSV-vs-Arrow materialized checks: 117 files, 585 rows.
+Full per-file paths, sizes, SHA256, symlinks, module-state observations, map reuse metadata and lifecycle snapshots are in the companion JSON.
+Paths use <CASE> to normalize independent empty lab directories. Bytes are logical bytes unless allocated_bytes is named; do not add symlink sizes to their backing blobs.
+
+Input pins:
+{
+  "dataset": "lhoestq/demo1",
+  "dataset_revision": "87ecf163bedca9d80598b528940a9c4f99e14c11",
+  "model": "hf-internal-testing/tiny-random-bert",
+  "model_revision": "f171d7baecaf37b5da5a3616d8833b9969753535"
+}
+
+Per-case observations:
+defaults r01: validated; rows=5
+  Hub=<CASE>/home/.cache/huggingface/hub
+  Datasets constant=<CASE>/home/.cache/huggingface/datasets
+  Actual Arrow=<CASE>/home/.cache/huggingface/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+hf-home r01: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/hf/datasets
+  Actual Arrow=<CASE>/hf/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+datasets-only r01: validated; rows=5
+  Hub=<CASE>/home/.cache/huggingface/hub
+  Datasets constant=<CASE>/arrow
+  Actual Arrow=<CASE>/arrow/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+hub-only r01: validated; rows=5
+  Hub=<CASE>/hub
+  Datasets constant=<CASE>/home/.cache/huggingface/datasets
+  Actual Arrow=<CASE>/home/.cache/huggingface/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+split r01: validated; rows=5
+  Hub=<CASE>/hub
+  Datasets constant=<CASE>/arrow
+  Actual Arrow=<CASE>/arrow/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+xdg r01: validated; rows=5
+  Hub=<CASE>/xdg/huggingface/hub
+  Datasets constant=<CASE>/xdg/huggingface/datasets
+  Actual Arrow=<CASE>/xdg/huggingface/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+home-over-xdg r01: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/hf/datasets
+  Actual Arrow=<CASE>/hf/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+transformers-legacy r01: validated; rows=5
+  Hub=<CASE>/home/.cache/huggingface/hub
+  Datasets constant=<CASE>/home/.cache/huggingface/datasets
+  Actual Arrow=<CASE>/home/.cache/huggingface/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+datasets-argument r01: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/arrow
+  Actual Arrow=<CASE>/explicit-arrow/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+config-argument r01: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/hf/datasets
+  Actual Arrow=<CASE>/hf/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+import-before r01: validated; rows=5
+  Hub=<CASE>/late/hub
+  Datasets constant=<CASE>/late/datasets
+  Actual Arrow=<CASE>/late/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+import-bound-both r01: validated; rows=5
+  Hub=<CASE>/early/hub
+  Datasets constant=<CASE>/early/datasets
+  Actual Arrow=<CASE>/early/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+import-bound-hub r01: validated; rows=5
+  Hub=<CASE>/early/hub
+  Datasets constant=<CASE>/late/datasets
+  Actual Arrow=<CASE>/late/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+import-lazy-root r01: validated; rows=5
+  Hub=<CASE>/late/hub
+  Datasets constant=<CASE>/late/datasets
+  Actual Arrow=<CASE>/late/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+cleanup r01: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/hf/datasets
+  Actual Arrow=<CASE>/hf/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+  cleanup_cache_files removed=1; Hub rm affected only dataset repository.
+saved-dataset r01: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/arrow
+  Actual Arrow=<CASE>/arrow/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+relocation r01: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/hf/datasets
+  Actual Arrow=<CASE>/hf/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+  Copy manifests equal; original path unavailable; offline config/base/map verified; self-tests passed; zero actual connection attempts.
+defaults r02: validated; rows=5
+  Hub=<CASE>/home/.cache/huggingface/hub
+  Datasets constant=<CASE>/home/.cache/huggingface/datasets
+  Actual Arrow=<CASE>/home/.cache/huggingface/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+hf-home r02: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/hf/datasets
+  Actual Arrow=<CASE>/hf/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+datasets-only r02: validated; rows=5
+  Hub=<CASE>/home/.cache/huggingface/hub
+  Datasets constant=<CASE>/arrow
+  Actual Arrow=<CASE>/arrow/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+hub-only r02: validated; rows=5
+  Hub=<CASE>/hub
+  Datasets constant=<CASE>/home/.cache/huggingface/datasets
+  Actual Arrow=<CASE>/home/.cache/huggingface/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+split r02: validated; rows=5
+  Hub=<CASE>/hub
+  Datasets constant=<CASE>/arrow
+  Actual Arrow=<CASE>/arrow/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+xdg r02: validated; rows=5
+  Hub=<CASE>/xdg/huggingface/hub
+  Datasets constant=<CASE>/xdg/huggingface/datasets
+  Actual Arrow=<CASE>/xdg/huggingface/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+home-over-xdg r02: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/hf/datasets
+  Actual Arrow=<CASE>/hf/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+transformers-legacy r02: validated; rows=5
+  Hub=<CASE>/home/.cache/huggingface/hub
+  Datasets constant=<CASE>/home/.cache/huggingface/datasets
+  Actual Arrow=<CASE>/home/.cache/huggingface/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+datasets-argument r02: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/arrow
+  Actual Arrow=<CASE>/explicit-arrow/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+config-argument r02: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/hf/datasets
+  Actual Arrow=<CASE>/hf/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+import-before r02: validated; rows=5
+  Hub=<CASE>/late/hub
+  Datasets constant=<CASE>/late/datasets
+  Actual Arrow=<CASE>/late/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+import-bound-both r02: validated; rows=5
+  Hub=<CASE>/early/hub
+  Datasets constant=<CASE>/early/datasets
+  Actual Arrow=<CASE>/early/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+import-bound-hub r02: validated; rows=5
+  Hub=<CASE>/early/hub
+  Datasets constant=<CASE>/late/datasets
+  Actual Arrow=<CASE>/late/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+import-lazy-root r02: validated; rows=5
+  Hub=<CASE>/late/hub
+  Datasets constant=<CASE>/late/datasets
+  Actual Arrow=<CASE>/late/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+cleanup r02: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/hf/datasets
+  Actual Arrow=<CASE>/hf/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+  cleanup_cache_files removed=1; Hub rm affected only dataset repository.
+saved-dataset r02: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/arrow
+  Actual Arrow=<CASE>/arrow/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+relocation r02: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/hf/datasets
+  Actual Arrow=<CASE>/hf/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+  Copy manifests equal; original path unavailable; offline config/base/map verified; self-tests passed; zero actual connection attempts.
+defaults r03: validated; rows=5
+  Hub=<CASE>/home/.cache/huggingface/hub
+  Datasets constant=<CASE>/home/.cache/huggingface/datasets
+  Actual Arrow=<CASE>/home/.cache/huggingface/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+hf-home r03: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/hf/datasets
+  Actual Arrow=<CASE>/hf/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+datasets-only r03: validated; rows=5
+  Hub=<CASE>/home/.cache/huggingface/hub
+  Datasets constant=<CASE>/arrow
+  Actual Arrow=<CASE>/arrow/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+hub-only r03: validated; rows=5
+  Hub=<CASE>/hub
+  Datasets constant=<CASE>/home/.cache/huggingface/datasets
+  Actual Arrow=<CASE>/home/.cache/huggingface/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+split r03: validated; rows=5
+  Hub=<CASE>/hub
+  Datasets constant=<CASE>/arrow
+  Actual Arrow=<CASE>/arrow/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+xdg r03: validated; rows=5
+  Hub=<CASE>/xdg/huggingface/hub
+  Datasets constant=<CASE>/xdg/huggingface/datasets
+  Actual Arrow=<CASE>/xdg/huggingface/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+home-over-xdg r03: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/hf/datasets
+  Actual Arrow=<CASE>/hf/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+transformers-legacy r03: validated; rows=5
+  Hub=<CASE>/home/.cache/huggingface/hub
+  Datasets constant=<CASE>/home/.cache/huggingface/datasets
+  Actual Arrow=<CASE>/home/.cache/huggingface/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+datasets-argument r03: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/arrow
+  Actual Arrow=<CASE>/explicit-arrow/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+config-argument r03: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/hf/datasets
+  Actual Arrow=<CASE>/hf/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+import-before r03: validated; rows=5
+  Hub=<CASE>/late/hub
+  Datasets constant=<CASE>/late/datasets
+  Actual Arrow=<CASE>/late/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+import-bound-both r03: validated; rows=5
+  Hub=<CASE>/early/hub
+  Datasets constant=<CASE>/early/datasets
+  Actual Arrow=<CASE>/early/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+import-bound-hub r03: validated; rows=5
+  Hub=<CASE>/early/hub
+  Datasets constant=<CASE>/late/datasets
+  Actual Arrow=<CASE>/late/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+import-lazy-root r03: validated; rows=5
+  Hub=<CASE>/late/hub
+  Datasets constant=<CASE>/late/datasets
+  Actual Arrow=<CASE>/late/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+cleanup r03: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/hf/datasets
+  Actual Arrow=<CASE>/hf/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+  cleanup_cache_files removed=1; Hub rm affected only dataset repository.
+saved-dataset r03: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/arrow
+  Actual Arrow=<CASE>/arrow/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+relocation r03: validated; rows=5
+  Hub=<CASE>/hf/hub
+  Datasets constant=<CASE>/hf/datasets
+  Actual Arrow=<CASE>/hf/datasets/lhoestq___demo1/default/0.0.0/87ecf163bedca9d80598b528940a9c4f99e14c11/demo1-train.arrow
+  Base rows SHA256=e9251fca40be9368e122fc7980f81f00f20dc76112c75ef02da5947715f72e39
+  Mapped rows SHA256=f606ed27455958d8043245bc4a01dac76ae8950efda768a800f5c4242c3a586b
+  Copy manifests equal; original path unavailable; offline config/base/map verified; self-tests passed; zero actual connection attempts.
+
+CLI cleanup r01 (captured stdout):
+About to delete 1 repo(s) totalling 5.0K.
+  - dataset/lhoestq/demo1 (entire repo)
+✓ Dry run: no files were deleted.
+  dry_run: True
+  repos: 1
+  revisions: 1
+  size: 5.0K
+
+About to delete 1 repo(s) totalling 5.0K.
+  - dataset/lhoestq/demo1 (entire repo)
+✓ Deleted 1 repo(s) and 1 revision(s); freed 5.0K.
+  repos_deleted: 1
+  revisions_deleted: 1
+  freed: 5.0K
+
+
+CLI cleanup r02 (captured stdout):
+About to delete 1 repo(s) totalling 5.0K.
+  - dataset/lhoestq/demo1 (entire repo)
+✓ Dry run: no files were deleted.
+  dry_run: True
+  repos: 1
+  revisions: 1
+  size: 5.0K
+
+About to delete 1 repo(s) totalling 5.0K.
+  - dataset/lhoestq/demo1 (entire repo)
+✓ Deleted 1 repo(s) and 1 revision(s); freed 5.0K.
+  repos_deleted: 1
+  revisions_deleted: 1
+  freed: 5.0K
+
+
+CLI cleanup r03 (captured stdout):
+About to delete 1 repo(s) totalling 5.0K.
+  - dataset/lhoestq/demo1 (entire repo)
+✓ Dry run: no files were deleted.
+  dry_run: True
+  repos: 1
+  revisions: 1
+  size: 5.0K
+
+About to delete 1 repo(s) totalling 5.0K.
+  - dataset/lhoestq/demo1 (entire repo)
+✓ Deleted 1 repo(s) and 1 revision(s); freed 5.0K.
+  repos_deleted: 1
+  revisions_deleted: 1
+  freed: 5.0K
+
+
+Excluded setup/scout records:
+scout-v1: six harness KeyError failures from text versus actual review column; scout-v2: six successful preparation cases. Neither counted in the primary matrix.
+
+The initial host import also required creation of its absent parent directory; an initial Windows PowerShell host capture lacked its module. Both were corrected and separately logged before primary measurement.
+
+Provenance:
+{
+  "status": "PRIMARY_SEMANTIC_PASS",
+  "checks": 24348,
+  "validator_sha256": "a7e5a1fa97b03a8a8c6c09ad1ed779b7e1d542289f611163081e3bc4110f058e",
+  "raw_manifest_sha256": "5e1b23502febc4b4fb4993c180261add030e6957d3e1f8407303bcedfd5ec951",
+  "runtime_before_after_sha256": "45820271caa728683a516513edbc3e7f7f2193e1d21af9bfe330e7675ffe4cbc",
+  "python_and_package_files_unchanged": 8210,
+  "independent_arrow_files_checked": 117
+}

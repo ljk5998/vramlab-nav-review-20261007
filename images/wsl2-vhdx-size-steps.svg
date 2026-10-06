@@ -1,0 +1,57 @@
+<svg width="720" height="356" viewBox="0 0 720 356" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,Segoe UI,Roboto,sans-serif" role="img" aria-label="WSL2 vhdx size at each experiment step: logical size versus size on disk" style="max-width:100%;height:auto">
+<rect x="0.5" y="0.5" width="719" height="355" rx="8" fill="#fcfcfb" stroke="#e2e2df"/>
+<text x="46" y="24" font-size="13" font-weight="600" fill="#0b0b0b">ext4.vhdx size at each step (GB) — measured 2026-08-06, WSL 2.7.3.0</text>
+<line x1="46" y1="310.0" x2="706" y2="310.0" stroke="#d8d8d4" stroke-width="1"/>
+<text x="40" y="313.5" font-size="10.5" fill="#52514e" text-anchor="end">0</text>
+<line x1="46" y1="254.6" x2="706" y2="254.6" stroke="#ececea" stroke-width="1"/>
+<text x="40" y="258.1" font-size="10.5" fill="#52514e" text-anchor="end">5</text>
+<line x1="46" y1="199.2" x2="706" y2="199.2" stroke="#ececea" stroke-width="1"/>
+<text x="40" y="202.7" font-size="10.5" fill="#52514e" text-anchor="end">10</text>
+<line x1="46" y1="143.8" x2="706" y2="143.8" stroke="#ececea" stroke-width="1"/>
+<text x="40" y="147.2" font-size="10.5" fill="#52514e" text-anchor="end">15</text>
+<line x1="46" y1="88.3" x2="706" y2="88.3" stroke="#ececea" stroke-width="1"/>
+<text x="40" y="91.8" font-size="10.5" fill="#52514e" text-anchor="end">20</text>
+<path d="M62.2,310.0 v-12.6 q0,-3 3,-3 h18.0 q3,0 3,3 v12.6 z" fill="#2a78d6"><title>Fresh install: logical 1.41 GB</title></path>
+<path d="M88.2,310.0 v-12.6 q0,-3 3,-3 h18.0 q3,0 3,3 v12.6 z" fill="#eb6834"><title>Fresh install: size on disk 1.41 GB</title></path>
+<text x="88.2" y="289.4" font-size="10" fill="#52514e" text-anchor="middle">1.41</text>
+<text x="87.2" y="324.0" font-size="10.5" fill="#52514e" text-anchor="middle">Fresh</text>
+<text x="87.2" y="336.0" font-size="10.5" fill="#52514e" text-anchor="middle">install</text>
+<path d="M144.8,310.0 v-234.3 q0,-3 3,-3 h18.0 q3,0 3,3 v234.3 z" fill="#2a78d6"><title>+20 GB written: logical 21.41 GB</title></path>
+<path d="M170.8,310.0 v-234.3 q0,-3 3,-3 h18.0 q3,0 3,3 v234.3 z" fill="#eb6834"><title>+20 GB written: size on disk 21.41 GB</title></path>
+<text x="169.8" y="324.0" font-size="10.5" fill="#52514e" text-anchor="middle">+20 GB</text>
+<text x="169.8" y="336.0" font-size="10.5" fill="#52514e" text-anchor="middle">written</text>
+<path d="M227.2,310.0 v-234.3 q0,-3 3,-3 h18.0 q3,0 3,3 v234.3 z" fill="#2a78d6"><title>Deleted inside WSL: logical 21.41 GB</title></path>
+<path d="M253.2,310.0 v-234.3 q0,-3 3,-3 h18.0 q3,0 3,3 v234.3 z" fill="#eb6834"><title>Deleted inside WSL: size on disk 21.41 GB</title></path>
+<text x="253.2" y="67.7" font-size="10" fill="#52514e" text-anchor="middle">still 21.41</text>
+<text x="252.2" y="324.0" font-size="10.5" fill="#52514e" text-anchor="middle">Deleted</text>
+<text x="252.2" y="336.0" font-size="10.5" fill="#52514e" text-anchor="middle">inside WSL</text>
+<path d="M309.8,310.0 v-12.3 q0,-3 3,-3 h18.0 q3,0 3,3 v12.3 z" fill="#2a78d6"><title>diskpart compact: logical 1.38 GB</title></path>
+<path d="M335.8,310.0 v-12.3 q0,-3 3,-3 h18.0 q3,0 3,3 v12.3 z" fill="#eb6834"><title>diskpart compact: size on disk 1.38 GB</title></path>
+<text x="335.8" y="289.7" font-size="10" fill="#52514e" text-anchor="middle">1.38</text>
+<text x="334.8" y="324.0" font-size="10.5" fill="#52514e" text-anchor="middle">diskpart</text>
+<text x="334.8" y="336.0" font-size="10.5" fill="#52514e" text-anchor="middle">compact</text>
+<path d="M392.2,310.0 v-234.0 q0,-3 3,-3 h18.0 q3,0 3,3 v234.0 z" fill="#2a78d6"><title>sparse on, +20 GB: logical 21.38 GB</title></path>
+<path d="M418.2,310.0 v-234.0 q0,-3 3,-3 h18.0 q3,0 3,3 v234.0 z" fill="#eb6834"><title>sparse on, +20 GB: size on disk 21.38 GB</title></path>
+<text x="417.2" y="324.0" font-size="10.5" fill="#52514e" text-anchor="middle">sparse on,</text>
+<text x="417.2" y="336.0" font-size="10.5" fill="#52514e" text-anchor="middle">+20 GB</text>
+<path d="M474.8,310.0 v-234.4 q0,-3 3,-3 h18.0 q3,0 3,3 v234.4 z" fill="#2a78d6"><title>Deleted (sparse): logical 21.42 GB</title></path>
+<path d="M500.8,310.0 v-13.1 q0,-3 3,-3 h18.0 q3,0 3,3 v13.1 z" fill="#eb6834"><title>Deleted (sparse): size on disk 1.45 GB</title></path>
+<text x="486.8" y="67.6" font-size="10" fill="#52514e" text-anchor="middle">21.42</text>
+<text x="513.8" y="288.9" font-size="10" font-weight="600" fill="#52514e" text-anchor="middle">1.45</text>
+<text x="499.8" y="324.0" font-size="10.5" fill="#52514e" text-anchor="middle">Deleted</text>
+<text x="499.8" y="336.0" font-size="10.5" fill="#52514e" text-anchor="middle">(sparse)</text>
+<path d="M557.2,310.0 v-234.1 q0,-3 3,-3 h18.0 q3,0 3,3 v234.1 z" fill="#2a78d6"><title>sparse off: logical 21.39 GB</title></path>
+<path d="M583.2,310.0 v-234.1 q0,-3 3,-3 h18.0 q3,0 3,3 v234.1 z" fill="#eb6834"><title>sparse off: size on disk 21.39 GB</title></path>
+<text x="583.2" y="67.9" font-size="10" fill="#52514e" text-anchor="middle">re-inflated</text>
+<text x="582.2" y="324.0" font-size="10.5" fill="#52514e" text-anchor="middle">sparse</text>
+<text x="582.2" y="336.0" font-size="10.5" fill="#52514e" text-anchor="middle">off</text>
+<path d="M639.8,310.0 v-12.4 q0,-3 3,-3 h18.0 q3,0 3,3 v12.4 z" fill="#2a78d6"><title>Final compact: logical 1.39 GB</title></path>
+<path d="M665.8,310.0 v-12.4 q0,-3 3,-3 h18.0 q3,0 3,3 v12.4 z" fill="#eb6834"><title>Final compact: size on disk 1.39 GB</title></path>
+<text x="665.8" y="289.6" font-size="10" fill="#52514e" text-anchor="middle">1.39</text>
+<text x="664.8" y="324.0" font-size="10.5" fill="#52514e" text-anchor="middle">Final</text>
+<text x="664.8" y="336.0" font-size="10.5" fill="#52514e" text-anchor="middle">compact</text>
+<rect x="474" y="14" width="10" height="10" rx="2" fill="#2a78d6"/>
+<text x="489" y="23" font-size="11.5" fill="#0b0b0b">Logical size</text>
+<rect x="570" y="14" width="10" height="10" rx="2" fill="#eb6834"/>
+<text x="585" y="23" font-size="11.5" fill="#0b0b0b">Size on disk</text>
+</svg>

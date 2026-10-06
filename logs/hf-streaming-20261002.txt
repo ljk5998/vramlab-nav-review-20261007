@@ -1,0 +1,31 @@
+HF streaming measured on WSL2, 2026-10-02
+Primary cases: 60; independent decoded-file audit: PASS
+Validation checks: 402841
+Failure scout retained: Parquet prefix read returned rows but did not exit before 180 s.
+Corrected probe closes the iterator explicitly. Every primary process exited 0.
+Server completed GET body totals exclude aborted responses. Actual server body writes and aborts remain in CSV/JSON.
+No network measurement was made for the remote Hub cases; their server fields are inapplicable, not proof of zero WAN traffic.
+Cache bytes are final regular file lengths, not Windows disk reclaimed or peak temporary allocation.
+
+RSS summaries use ru_maxrss recorded in an atexit callback after explicit cleanup, including imports; separate 50 ms VmHWM samples remain in wrappers.
+study format mode rows state n cache_bytes completed_GET_body_bytes first_row_s_median work_s_median atexit_RSS_KiB_median
+http csv normal 1000 empty 3 158333048 78288901 1.238815 1.249373 223440
+http csv normal 1000 reused 3 158333048 0 0.700854 0.711985 169600
+http csv normal 200000 empty 3 158333048 78288901 1.289219 3.352689 287948
+http csv normal 200000 reused 3 158333048 0 0.691590 2.703835 234284
+http csv stream 1000 empty 3 0 5505024 0.728902 0.732360 182080
+http csv stream 1000 reused 3 0 5505024 0.724199 0.727713 181840
+http csv stream 200000 empty 3 0 83269637 0.719327 1.947205 254124
+http csv stream 200000 reused 3 0 83269637 0.719158 1.927101 254292
+http parquet normal 1000 empty 3 138152645 58908496 0.865510 0.876334 270608
+http parquet normal 1000 reused 3 138152645 0 0.679327 0.689846 169464
+http parquet normal 200000 empty 3 138152645 58908496 0.857820 2.891914 290764
+http parquet normal 200000 reused 3 138152645 0 0.678714 2.729504 233720
+http parquet stream 1000 empty 3 0 37773687 0.756917 0.767186 240692
+http parquet stream 1000 reused 3 0 37773687 0.751641 0.763037 238844
+http parquet stream 200000 empty 3 0 64282444 0.777140 3.119836 336160
+http parquet stream 200000 reused 3 0 64282444 0.745746 2.982269 337812
+hub csv normal 5 empty 3 7890 NA 2.122813 2.122955 157764
+hub csv normal 5 reused 3 7890 NA 1.691775 1.691987 155956
+hub csv stream 5 empty 3 2856 NA 2.154548 2.154591 156532
+hub csv stream 5 reused 3 2856 NA 1.884750 1.884793 156680

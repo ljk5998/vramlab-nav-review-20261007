@@ -1,0 +1,144 @@
+VRAMLab publication log
+Experiment: WSL2 VHDX host attributes vs launch and --manage --resize
+Date: 2026-08-11 (Asia/Seoul)
+
+SCOPE
+-----
+This is a sanitized publication log derived from the preserved JSON and CSV
+records. It contains no production-distro path. The measured runtime was WSL
+2.7.3.0; results are not presented as measurements of later WSL versions.
+
+ENVIRONMENT
+-----------
+Windows:       Windows 11 Home 25H2, build 26200.8875
+WSL:           2.7.3.0
+Kernel:        6.6.114.1-1 (wsl --version)
+Uname release: 6.6.114.1-microsoft-standard-WSL2
+Guest:         Ubuntu 26.04 LTS
+Host storage:  C: SSD, NTFS
+Base VHDX:     6,548,357,120 bytes logical and allocated
+Base SHA-256:  3131EF600699A5FDAD281B4ED36ECE29AE0868015A1AC0C483E7BC3F06D8C802
+Resize target: 1100GB = 1,181,116,006,400 bytes (1100 GiB)
+Initial ext4 total from df -B1 /: 1,081,101,176,832 bytes
+
+DESIGN
+------
+The production Ubuntu distro was exported once. Every valid run used an
+independent disposable clone from that base. Startup and resize were separate
+cohorts: four conditions x three clones = 12 startup runs and 12 resize runs.
+
+Conditions:
+  control          Archive
+  compressed       Archive, Compressed
+  raw-sparse       Archive, SparseFile, set with fsutil sparse setflag
+  managed-sparse   Archive, SparseFile, set with WSL --set-sparse true
+
+Before host-file mutation, WSL was shut down and the running-distro list was
+confirmed empty. File length, allocated bytes, attributes, and SHA-256 were
+recorded around condition setup. All 24 pre-condition/condition hash checks
+passed. fsutil sparse setrange was never used.
+
+Startup probe:
+  wsl.exe -d <clone> --exec /bin/true
+
+Resize probe:
+  wsl.exe --manage <clone> --resize 1100GB
+
+STARTUP RUNS
+------------
+case             rep   exit   seconds   allocated after set   allocated after boot
+control          R1       0     2.366        6,548,357,120          6,548,357,120
+control          R2       0     2.432        6,548,357,120          6,548,357,120
+control          R3       0     2.372        6,548,357,120          6,548,357,120
+compressed       R1       0     2.308        4,956,442,624          4,956,499,968
+compressed       R2       0     2.129        4,956,438,528          4,956,495,872
+compressed       R3       0     2.166        4,956,434,432          4,956,491,776
+raw-sparse       R1       0     2.628        6,548,357,120          6,547,963,904
+raw-sparse       R2       0     2.468        6,548,357,120          6,548,357,120
+raw-sparse       R3       0     2.585        6,548,357,120          6,548,357,120
+managed-sparse   R1       0     2.533        6,548,357,120          6,548,357,120
+managed-sparse   R2       0     2.471        6,548,357,120          6,548,357,120
+managed-sparse   R3       0     2.347        6,548,357,120          6,548,357,120
+
+Startup result: 12/12 successful. These are launch probes, not long-running
+workload or performance measurements.
+
+RESIZE RUNS
+-----------
+case             rep   first exit   first sec   exact code   clear sec   retry exit   retry sec   post-boot
+control          R1             0       4.626       no             n/a            n/a         n/a           0
+control          R2             0       4.942       no             n/a            n/a         n/a           0
+control          R3             0       4.926       no             n/a            n/a         n/a           0
+compressed       R1            -1       0.069       yes         15.637              0       5.376           0
+compressed       R2            -1       0.062       yes         13.123              0       4.930           0
+compressed       R3            -1       0.058       yes          9.541              0       4.958           0
+raw-sparse       R1            -1       0.084       yes          0.027              0       5.400           0
+raw-sparse       R2            -1       0.063       yes          0.021              0       4.901           0
+raw-sparse       R3            -1       0.082       yes          0.024              0       4.899           0
+managed-sparse   R1            -1       0.187       yes          0.058              0       5.380           0
+managed-sparse   R2            -1       0.058       yes          0.055              0       4.942           0
+managed-sparse   R3            -1       0.058       yes          0.054              0       4.963           0
+
+Exact observed output on the Korean Windows locale, all nine conditioned
+resize failures:
+
+  가상 디스크 시스템 제한으로 인해 요청한 작업을 완료할 수 없습니다. 가상 하드 디스크 파일은 압축이 풀려 있는 상태이고 암호화되지 않아야 하며 스파스가 아니어야 합니다.
+  오류 코드: Wsl/Service/0xc03a001a
+
+The canonical Win32 constant is ERROR_VIRTUAL_DISK_LIMITATION (0xC03A001A).
+The English wording was not captured locally and is not represented as local
+output in this log.
+
+RECOVERY
+--------
+The matching condition was cleared, then the identical resize target was
+retried:
+
+  compressed:       compact.exe /u /f /a <vhdx>
+  raw-sparse:       fsutil.exe sparse setflag <vhdx> 0
+  managed-sparse:   wsl.exe --manage <clone> --set-sparse false
+
+Recovery resize: 9/9 successful.
+Post-recovery launch and df: 9/9 successful.
+Post-resize ext4 total: 1,161,425,506,304 bytes.
+Increase: 80,324,329,472 bytes = 74.808 GiB.
+No Windows reboot was used; wsl --shutdown was sufficient on this host.
+
+CAPACITY OBSERVATIONS
+---------------------
+Resize-cohort NTFS compression, n=3:
+  allocated before:       6,548,357,120 bytes
+  allocated after median: 4,956,434,432 bytes
+  median saved:           1,591,922,688 bytes = 1.48 GiB = 24.31%
+  compact /c median:      65.285 seconds
+  compact /u median:      13.123 seconds
+
+Raw sparse setflag, startup cohort n=3:
+  saved immediately: median 0 bytes, range 0-0
+  saved after one boot: median 0 bytes, range 0-393,216
+
+EFS
+---
+EFS was not tested on a VHDX. A small cipher.exe /e probe returned exit 1 and
+"The request is not supported" on this Windows Home host. Encryption must not
+be counted as a failed measured condition.
+
+LIMITS AND EXCLUSIONS
+---------------------
+Single PC, single NTFS SSD, WSL 2.7.3, one Ubuntu image, n=3 per condition.
+Not tested: EFS VHDX, ReFS, network storage, combined attributes, cold reboot,
+later WSL versions, long-running guest workload, or long-term integrity in the
+conditioned states. File length and allocated bytes did not change across the
+failed resize, but a separate immediately-before/immediately-after failure hash
+was not recorded; no bit-for-bit non-mutation claim is made.
+
+One preparation run was excluded after the harness mishandled a \\?\ path
+prefix. It was safely unregistered, corrected, and preserved separately. It is
+not counted in the 24 primary runs.
+
+FINAL SAFETY CHECK
+------------------
+All disposable clones were unregistered and their clone files removed. Only
+the production Ubuntu distro remained registered. Its final /bin/true probe
+returned exit 0, no WSL distro remained running, and C: had 182,117,838,848
+bytes (169.61 GiB) free.

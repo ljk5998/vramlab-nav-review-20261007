@@ -1,0 +1,65 @@
+WSL2 ext4.vhdx reclaim experiment — session log
+Date: 2026-08-06 (KST). Compiled from the live run; timestamps and sizes are as measured.
+Host: Windows 11 Home 10.0.26200 | WSL 2.7.3.0 | kernel 6.6.114.1-1 | distro: Ubuntu 26.04 LTS (fresh)
+vhdx: %LOCALAPPDATA%\wsl\{2b0f46b5-5574-4364-99f7-df38e87b85df}\ext4.vhdx
+Measurement: logical = file length; on-disk = allocated size via GetCompressedFileSizeW;
+sparse flag via `fsutil sparse queryflag`.
+
+--- Phase 0: baseline -------------------------------------------------------
+[00:12:17] T0 fresh distro              | logical 1.41 GB | on-disk 1.41 GB | NOT sparse
+
+--- Phase 1: fill 20 GB random (dd if=/dev/urandom, 4 x 5 GiB) --------------
+[00:13:26] blob_1 done
+[00:13:48] blob_2 done
+[00:14:05] blob_3 done
+[00:14:22] blob_4 done
+guest df /: 1007G total, 22G used
+[00:14:32] T1 after fill                | logical 21.41 GB | on-disk 21.41 GB | NOT sparse
+
+--- Phase 2: delete inside WSL ----------------------------------------------
+rm -rf ~/fakecache
+guest df /: 1.3G used
+[00:14:47] T2 after delete              | logical 21.41 GB | on-disk 21.41 GB | NOT sparse
+
+--- Phase 3: compact WITHOUT fstrim -----------------------------------------
+guest mount check: /dev/sdd / ext4 rw,relatime,discard,errors=remount-ro,data=ordered
+wsl --shutdown; diskpart /s compact.dpt   (attach readonly -> compact -> detach; completed 100%)
+[00:15:32] T3 after compact             | logical 1.38 GB | on-disk 1.38 GB | NOT sparse
+
+--- Phase 4: sparse VHD -----------------------------------------------------
+> wsl --manage Ubuntu --set-sparse true
+  REFUSED: "Sparse VHD support is currently disabled due to potential data corruption.
+  To force a distribution to use a sparse vhd, please run:
+  wsl.exe --manage <DistributionName> --set-sparse true --allow-unsafe"
+  Error code: Wsl/Service/E_INVALIDARG
+> wsl --manage Ubuntu --set-sparse true --allow-unsafe   (scratch distro; accepted risk)
+[00:16:59] T4 sparse enabled            | logical 1.38 GB | on-disk 1.38 GB | SPARSE
+(fill 20 GB again, 00:17:20-00:18:10)
+[00:18:30] T5 sparse + fill             | logical 21.38 GB | on-disk 21.38 GB | SPARSE
+rm -rf ~/fakecache
+[00:18:36] T6 5 s after delete          | logical 21.42 GB | on-disk  1.45 GB | SPARSE  <- auto-reclaim
+[00:19:06] T6b 35 s after delete        | logical 21.42 GB | on-disk  1.45 GB | SPARSE
+
+--- Phase 5: diskpart vs sparse ---------------------------------------------
+wsl --shutdown; diskpart /s compact.dpt
+  FAILED at attach: "The requested operation could not be completed due to a virtual
+  disk system limitation. Virtual hard disk files must be uncompressed and unencrypted
+  and must not be sparse."  (Korean-locale original in session; canonical EN text shown)
+[00:19:37] T7 after failed attempt      | logical 21.39 GB | on-disk  1.45 GB | SPARSE
+
+--- Phase 6: sparse off + final compact -------------------------------------
+> wsl --manage Ubuntu --set-sparse false
+[00:20:15] T8 sparse disabled           | logical 21.39 GB | on-disk 21.39 GB | NOT sparse  <- holes re-materialized
+diskpart /s compact.dpt   (completed)
+[00:20:22] T9 final                     | logical 1.39 GB | on-disk 1.39 GB | NOT sparse
+
+--- Reproduction ------------------------------------------------------------
+fill:    mkdir -p ~/fakecache && cd ~/fakecache && for i in 1 2 3 4; do dd if=/dev/urandom of=blob_$i bs=4M count=1280 status=none; done
+delete:  rm -rf ~/fakecache
+measure (PowerShell): (Get-Item $vhdx).Length ; GetCompressedFileSizeW P/Invoke ; fsutil sparse queryflag $vhdx
+compact.dpt:
+  select vdisk file="<path-to>\ext4.vhdx"
+  attach vdisk readonly
+  compact vdisk
+  detach vdisk
+  exit

@@ -1,0 +1,869 @@
+{
+  "schema_version": 1,
+  "experiment": "MAC-CONTEXT",
+  "measurement_date": "2026-09-10",
+  "hardware": {
+    "chip": "Apple M4",
+    "model_identifier": "Mac16,12",
+    "physical_memory_bytes": 17179869184,
+    "cpu_cores": 10,
+    "gpu_cores": 10,
+    "macOS": "26.6.2 (25G83)"
+  },
+  "scope": "Fixed Qwen3-8B Q4_K_M and Metal build. Capacity and actual input length both change. 128 fixed output tokens; no answer-quality test.",
+  "primary_count": 9,
+  "contexts": [
+    2048,
+    4096,
+    8192
+  ],
+  "repetitions": 3,
+  "excluded_contexts": [
+    {
+      "context": 16384,
+      "phase": "scout",
+      "status": "no_first_content_within_120_seconds",
+      "primary_repetitions": 0,
+      "ttft_s": null,
+      "completion_s": null,
+      "decode_tps": null,
+      "swap_peak_delta_bytes": 0,
+      "pressure_dispatch_values": [
+        1
+      ],
+      "teardown": "A second interrupt was followed by GGML_ASSERT([rsets->data count] == 0) during Metal cleanup; time(1) peak unavailable."
+    }
+  ],
+  "protocol_sha256": "726c26e4fcbd1bc8d14842593a149f4509d7d2da7ca2ed4ee7a6781f87eb3524",
+  "raw_batch_sha256": "6acf31e07c46a1645ab6c36c8ff2a2266e6c5994b5cc30748f30adbb0890744e",
+  "rows": [
+    {
+      "id": "trial-01-ctx-2048-rep-1",
+      "context": 2048,
+      "repetition": 1,
+      "prompt_tokens": 1792,
+      "generated_tokens": 128,
+      "ttft_s": 11.845196457999918,
+      "completion_s": 20.14054699999997,
+      "prompt_tps": 151.314928416724,
+      "decode_tps": 15.309937017089025,
+      "rss_peak_bytes": 5467193344,
+      "rss_sample_peak_bytes": 5467095040,
+      "kv_MiB": 288.0,
+      "metal_model_MiB": 4789.19,
+      "metal_compute_MiB": 32.78,
+      "baseline_compressed_bytes": 1367474176,
+      "compressed_peak_delta_bytes": -1015808,
+      "baseline_swap_bytes": 0,
+      "swap_peak_delta_bytes": 0,
+      "pageouts_delta_bytes": 0,
+      "swapouts_delta_bytes": 0,
+      "startup_s": 0.6354831250000643
+    },
+    {
+      "id": "trial-02-ctx-4096-rep-1",
+      "context": 4096,
+      "repetition": 1,
+      "prompt_tokens": 3840,
+      "generated_tokens": 128,
+      "ttft_s": 27.5362620410001,
+      "completion_s": 36.418040625,
+      "prompt_tps": 139.4650650363007,
+      "decode_tps": 14.29921409492674,
+      "rss_peak_bytes": 5770395648,
+      "rss_sample_peak_bytes": 5770215424,
+      "kv_MiB": 576.0,
+      "metal_model_MiB": 4789.19,
+      "metal_compute_MiB": 41.28,
+      "baseline_compressed_bytes": 1365164032,
+      "compressed_peak_delta_bytes": -507904,
+      "baseline_swap_bytes": 0,
+      "swap_peak_delta_bytes": 0,
+      "pageouts_delta_bytes": 0,
+      "swapouts_delta_bytes": 0,
+      "startup_s": 0.6390196249999462
+    },
+    {
+      "id": "trial-03-ctx-8192-rep-1",
+      "context": 8192,
+      "repetition": 1,
+      "prompt_tokens": 7936,
+      "generated_tokens": 128,
+      "ttft_s": 70.72398124999995,
+      "completion_s": 85.69929054099998,
+      "prompt_tps": 112.21719139657266,
+      "decode_tps": 8.481803859287542,
+      "rss_peak_bytes": 6376570880,
+      "rss_sample_peak_bytes": 6376210432,
+      "kv_MiB": 1152.0,
+      "metal_model_MiB": 4789.19,
+      "metal_compute_MiB": 58.29,
+      "baseline_compressed_bytes": 1352859648,
+      "compressed_peak_delta_bytes": -114688,
+      "baseline_swap_bytes": 0,
+      "swap_peak_delta_bytes": 0,
+      "pageouts_delta_bytes": 0,
+      "swapouts_delta_bytes": 0,
+      "startup_s": 0.7399827920000916
+    },
+    {
+      "id": "trial-04-ctx-8192-rep-2",
+      "context": 8192,
+      "repetition": 2,
+      "prompt_tokens": 7936,
+      "generated_tokens": 128,
+      "ttft_s": 97.16025741699991,
+      "completion_s": 119.48042533399985,
+      "prompt_tps": 81.68327491304889,
+      "decode_tps": 5.690350652849001,
+      "rss_peak_bytes": 6376194048,
+      "rss_sample_peak_bytes": 6375866368,
+      "kv_MiB": 1152.0,
+      "metal_model_MiB": 4789.19,
+      "metal_compute_MiB": 58.29,
+      "baseline_compressed_bytes": 1350254592,
+      "compressed_peak_delta_bytes": -2441216,
+      "baseline_swap_bytes": 0,
+      "swap_peak_delta_bytes": 0,
+      "pageouts_delta_bytes": 0,
+      "swapouts_delta_bytes": 0,
+      "startup_s": 0.760050000000092
+    },
+    {
+      "id": "trial-05-ctx-2048-rep-2",
+      "context": 2048,
+      "repetition": 2,
+      "prompt_tokens": 1792,
+      "generated_tokens": 128,
+      "ttft_s": 22.36972387500009,
+      "completion_s": 35.561026458000015,
+      "prompt_tps": 80.115656248934,
+      "decode_tps": 9.627931250202794,
+      "rss_peak_bytes": 5467275264,
+      "rss_sample_peak_bytes": 5467193344,
+      "kv_MiB": 288.0,
+      "metal_model_MiB": 4789.19,
+      "metal_compute_MiB": 32.78,
+      "baseline_compressed_bytes": 1315323904,
+      "compressed_peak_delta_bytes": -98304,
+      "baseline_swap_bytes": 0,
+      "swap_peak_delta_bytes": 0,
+      "pageouts_delta_bytes": 0,
+      "swapouts_delta_bytes": 0,
+      "startup_s": 0.6554815829999825
+    },
+    {
+      "id": "trial-06-ctx-4096-rep-2",
+      "context": 4096,
+      "repetition": 2,
+      "prompt_tokens": 3840,
+      "generated_tokens": 128,
+      "ttft_s": 39.12299295799994,
+      "completion_s": 52.01622454099993,
+      "prompt_tps": 98.15895467461701,
+      "decode_tps": 9.850702901947267,
+      "rss_peak_bytes": 5771132928,
+      "rss_sample_peak_bytes": 5771034624,
+      "kv_MiB": 576.0,
+      "metal_model_MiB": 4789.19,
+      "metal_compute_MiB": 41.28,
+      "baseline_compressed_bytes": 1288208384,
+      "compressed_peak_delta_bytes": -245760,
+      "baseline_swap_bytes": 0,
+      "swap_peak_delta_bytes": 0,
+      "pageouts_delta_bytes": 0,
+      "swapouts_delta_bytes": 0,
+      "startup_s": 0.7615370830001211
+    },
+    {
+      "id": "trial-07-ctx-4096-rep-3",
+      "context": 4096,
+      "repetition": 3,
+      "prompt_tokens": 3840,
+      "generated_tokens": 128,
+      "ttft_s": 47.73886137499994,
+      "completion_s": 62.04824137500009,
+      "prompt_tps": 80.44227666474507,
+      "decode_tps": 8.875676787826876,
+      "rss_peak_bytes": 5766512640,
+      "rss_sample_peak_bytes": 5766479872,
+      "kv_MiB": 576.0,
+      "metal_model_MiB": 4789.19,
+      "metal_compute_MiB": 41.28,
+      "baseline_compressed_bytes": 1284603904,
+      "compressed_peak_delta_bytes": 307724288,
+      "baseline_swap_bytes": 0,
+      "swap_peak_delta_bytes": 0,
+      "pageouts_delta_bytes": 2949120,
+      "swapouts_delta_bytes": 0,
+      "startup_s": 0.7563910419999047
+    },
+    {
+      "id": "trial-08-ctx-8192-rep-3",
+      "context": 8192,
+      "repetition": 3,
+      "prompt_tokens": 7936,
+      "generated_tokens": 128,
+      "ttft_s": 87.07359454100015,
+      "completion_s": 104.83153224999978,
+      "prompt_tps": 91.1457465969077,
+      "decode_tps": 7.152119902418052,
+      "rss_peak_bytes": 6377029632,
+      "rss_sample_peak_bytes": 6376652800,
+      "kv_MiB": 1152.0,
+      "metal_model_MiB": 4789.19,
+      "metal_compute_MiB": 58.29,
+      "baseline_compressed_bytes": 1487273984,
+      "compressed_peak_delta_bytes": 99500032,
+      "baseline_swap_bytes": 0,
+      "swap_peak_delta_bytes": 0,
+      "pageouts_delta_bytes": 2490368,
+      "swapouts_delta_bytes": 0,
+      "startup_s": 0.7716011659999822
+    },
+    {
+      "id": "trial-09-ctx-2048-rep-3",
+      "context": 2048,
+      "repetition": 3,
+      "prompt_tokens": 1792,
+      "generated_tokens": 128,
+      "ttft_s": 14.71097325000028,
+      "completion_s": 23.779157834000216,
+      "prompt_tps": 121.83372538365555,
+      "decode_tps": 14.005696458621053,
+      "rss_peak_bytes": 5466587136,
+      "rss_sample_peak_bytes": 5466406912,
+      "kv_MiB": 288.0,
+      "metal_model_MiB": 4789.19,
+      "metal_compute_MiB": 32.78,
+      "baseline_compressed_bytes": 1578598400,
+      "compressed_peak_delta_bytes": -1441792,
+      "baseline_swap_bytes": 0,
+      "swap_peak_delta_bytes": 0,
+      "pageouts_delta_bytes": 0,
+      "swapouts_delta_bytes": 0,
+      "startup_s": 0.6530104160001429
+    }
+  ],
+  "by_context": {
+    "2048": {
+      "prompt_tokens": {
+        "median": 1792,
+        "min": 1792,
+        "max": 1792,
+        "values": [
+          1792,
+          1792,
+          1792
+        ]
+      },
+      "generated_tokens": {
+        "median": 128,
+        "min": 128,
+        "max": 128,
+        "values": [
+          128,
+          128,
+          128
+        ]
+      },
+      "ttft_s": {
+        "median": 14.71097325000028,
+        "min": 11.845196457999918,
+        "max": 22.36972387500009,
+        "values": [
+          11.845196457999918,
+          22.36972387500009,
+          14.71097325000028
+        ]
+      },
+      "completion_s": {
+        "median": 23.779157834000216,
+        "min": 20.14054699999997,
+        "max": 35.561026458000015,
+        "values": [
+          20.14054699999997,
+          35.561026458000015,
+          23.779157834000216
+        ]
+      },
+      "prompt_tps": {
+        "median": 121.83372538365555,
+        "min": 80.115656248934,
+        "max": 151.314928416724,
+        "values": [
+          151.314928416724,
+          80.115656248934,
+          121.83372538365555
+        ]
+      },
+      "decode_tps": {
+        "median": 14.005696458621053,
+        "min": 9.627931250202794,
+        "max": 15.309937017089025,
+        "values": [
+          15.309937017089025,
+          9.627931250202794,
+          14.005696458621053
+        ]
+      },
+      "rss_peak_bytes": {
+        "median": 5467193344,
+        "min": 5466587136,
+        "max": 5467275264,
+        "values": [
+          5467193344,
+          5467275264,
+          5466587136
+        ]
+      },
+      "rss_sample_peak_bytes": {
+        "median": 5467095040,
+        "min": 5466406912,
+        "max": 5467193344,
+        "values": [
+          5467095040,
+          5467193344,
+          5466406912
+        ]
+      },
+      "kv_MiB": {
+        "median": 288.0,
+        "min": 288.0,
+        "max": 288.0,
+        "values": [
+          288.0,
+          288.0,
+          288.0
+        ]
+      },
+      "metal_model_MiB": {
+        "median": 4789.19,
+        "min": 4789.19,
+        "max": 4789.19,
+        "values": [
+          4789.19,
+          4789.19,
+          4789.19
+        ]
+      },
+      "metal_compute_MiB": {
+        "median": 32.78,
+        "min": 32.78,
+        "max": 32.78,
+        "values": [
+          32.78,
+          32.78,
+          32.78
+        ]
+      },
+      "baseline_compressed_bytes": {
+        "median": 1367474176,
+        "min": 1315323904,
+        "max": 1578598400,
+        "values": [
+          1367474176,
+          1315323904,
+          1578598400
+        ]
+      },
+      "compressed_peak_delta_bytes": {
+        "median": -1015808,
+        "min": -1441792,
+        "max": -98304,
+        "values": [
+          -1015808,
+          -98304,
+          -1441792
+        ]
+      },
+      "baseline_swap_bytes": {
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "swap_peak_delta_bytes": {
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "pageouts_delta_bytes": {
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "swapouts_delta_bytes": {
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "startup_s": {
+        "median": 0.6530104160001429,
+        "min": 0.6354831250000643,
+        "max": 0.6554815829999825,
+        "values": [
+          0.6354831250000643,
+          0.6554815829999825,
+          0.6530104160001429
+        ]
+      }
+    },
+    "4096": {
+      "prompt_tokens": {
+        "median": 3840,
+        "min": 3840,
+        "max": 3840,
+        "values": [
+          3840,
+          3840,
+          3840
+        ]
+      },
+      "generated_tokens": {
+        "median": 128,
+        "min": 128,
+        "max": 128,
+        "values": [
+          128,
+          128,
+          128
+        ]
+      },
+      "ttft_s": {
+        "median": 39.12299295799994,
+        "min": 27.5362620410001,
+        "max": 47.73886137499994,
+        "values": [
+          27.5362620410001,
+          39.12299295799994,
+          47.73886137499994
+        ]
+      },
+      "completion_s": {
+        "median": 52.01622454099993,
+        "min": 36.418040625,
+        "max": 62.04824137500009,
+        "values": [
+          36.418040625,
+          52.01622454099993,
+          62.04824137500009
+        ]
+      },
+      "prompt_tps": {
+        "median": 98.15895467461701,
+        "min": 80.44227666474507,
+        "max": 139.4650650363007,
+        "values": [
+          139.4650650363007,
+          98.15895467461701,
+          80.44227666474507
+        ]
+      },
+      "decode_tps": {
+        "median": 9.850702901947267,
+        "min": 8.875676787826876,
+        "max": 14.29921409492674,
+        "values": [
+          14.29921409492674,
+          9.850702901947267,
+          8.875676787826876
+        ]
+      },
+      "rss_peak_bytes": {
+        "median": 5770395648,
+        "min": 5766512640,
+        "max": 5771132928,
+        "values": [
+          5770395648,
+          5771132928,
+          5766512640
+        ]
+      },
+      "rss_sample_peak_bytes": {
+        "median": 5770215424,
+        "min": 5766479872,
+        "max": 5771034624,
+        "values": [
+          5770215424,
+          5771034624,
+          5766479872
+        ]
+      },
+      "kv_MiB": {
+        "median": 576.0,
+        "min": 576.0,
+        "max": 576.0,
+        "values": [
+          576.0,
+          576.0,
+          576.0
+        ]
+      },
+      "metal_model_MiB": {
+        "median": 4789.19,
+        "min": 4789.19,
+        "max": 4789.19,
+        "values": [
+          4789.19,
+          4789.19,
+          4789.19
+        ]
+      },
+      "metal_compute_MiB": {
+        "median": 41.28,
+        "min": 41.28,
+        "max": 41.28,
+        "values": [
+          41.28,
+          41.28,
+          41.28
+        ]
+      },
+      "baseline_compressed_bytes": {
+        "median": 1288208384,
+        "min": 1284603904,
+        "max": 1365164032,
+        "values": [
+          1365164032,
+          1288208384,
+          1284603904
+        ]
+      },
+      "compressed_peak_delta_bytes": {
+        "median": -245760,
+        "min": -507904,
+        "max": 307724288,
+        "values": [
+          -507904,
+          -245760,
+          307724288
+        ]
+      },
+      "baseline_swap_bytes": {
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "swap_peak_delta_bytes": {
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "pageouts_delta_bytes": {
+        "median": 0,
+        "min": 0,
+        "max": 2949120,
+        "values": [
+          0,
+          0,
+          2949120
+        ]
+      },
+      "swapouts_delta_bytes": {
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "startup_s": {
+        "median": 0.7563910419999047,
+        "min": 0.6390196249999462,
+        "max": 0.7615370830001211,
+        "values": [
+          0.6390196249999462,
+          0.7615370830001211,
+          0.7563910419999047
+        ]
+      }
+    },
+    "8192": {
+      "prompt_tokens": {
+        "median": 7936,
+        "min": 7936,
+        "max": 7936,
+        "values": [
+          7936,
+          7936,
+          7936
+        ]
+      },
+      "generated_tokens": {
+        "median": 128,
+        "min": 128,
+        "max": 128,
+        "values": [
+          128,
+          128,
+          128
+        ]
+      },
+      "ttft_s": {
+        "median": 87.07359454100015,
+        "min": 70.72398124999995,
+        "max": 97.16025741699991,
+        "values": [
+          70.72398124999995,
+          97.16025741699991,
+          87.07359454100015
+        ]
+      },
+      "completion_s": {
+        "median": 104.83153224999978,
+        "min": 85.69929054099998,
+        "max": 119.48042533399985,
+        "values": [
+          85.69929054099998,
+          119.48042533399985,
+          104.83153224999978
+        ]
+      },
+      "prompt_tps": {
+        "median": 91.1457465969077,
+        "min": 81.68327491304889,
+        "max": 112.21719139657266,
+        "values": [
+          112.21719139657266,
+          81.68327491304889,
+          91.1457465969077
+        ]
+      },
+      "decode_tps": {
+        "median": 7.152119902418052,
+        "min": 5.690350652849001,
+        "max": 8.481803859287542,
+        "values": [
+          8.481803859287542,
+          5.690350652849001,
+          7.152119902418052
+        ]
+      },
+      "rss_peak_bytes": {
+        "median": 6376570880,
+        "min": 6376194048,
+        "max": 6377029632,
+        "values": [
+          6376570880,
+          6376194048,
+          6377029632
+        ]
+      },
+      "rss_sample_peak_bytes": {
+        "median": 6376210432,
+        "min": 6375866368,
+        "max": 6376652800,
+        "values": [
+          6376210432,
+          6375866368,
+          6376652800
+        ]
+      },
+      "kv_MiB": {
+        "median": 1152.0,
+        "min": 1152.0,
+        "max": 1152.0,
+        "values": [
+          1152.0,
+          1152.0,
+          1152.0
+        ]
+      },
+      "metal_model_MiB": {
+        "median": 4789.19,
+        "min": 4789.19,
+        "max": 4789.19,
+        "values": [
+          4789.19,
+          4789.19,
+          4789.19
+        ]
+      },
+      "metal_compute_MiB": {
+        "median": 58.29,
+        "min": 58.29,
+        "max": 58.29,
+        "values": [
+          58.29,
+          58.29,
+          58.29
+        ]
+      },
+      "baseline_compressed_bytes": {
+        "median": 1352859648,
+        "min": 1350254592,
+        "max": 1487273984,
+        "values": [
+          1352859648,
+          1350254592,
+          1487273984
+        ]
+      },
+      "compressed_peak_delta_bytes": {
+        "median": -114688,
+        "min": -2441216,
+        "max": 99500032,
+        "values": [
+          -114688,
+          -2441216,
+          99500032
+        ]
+      },
+      "baseline_swap_bytes": {
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "swap_peak_delta_bytes": {
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "pageouts_delta_bytes": {
+        "median": 0,
+        "min": 0,
+        "max": 2490368,
+        "values": [
+          0,
+          0,
+          2490368
+        ]
+      },
+      "swapouts_delta_bytes": {
+        "median": 0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "startup_s": {
+        "median": 0.760050000000092,
+        "min": 0.7399827920000916,
+        "max": 0.7716011659999822,
+        "values": [
+          0.7399827920000916,
+          0.760050000000092,
+          0.7716011659999822
+        ]
+      }
+    }
+  },
+  "provenance": [
+    {
+      "id": "trial-01-ctx-2048-rep-1",
+      "raw_result_sha256": "56c1be32bcf2b0c74df5e7b1040cb0e3511bd43d4008ad0d0ac650618c6b4d58",
+      "server_log_sha256": "1c4cf51b8277c0397884c06d9abb7f0d9ded090782b4fb9524103155b40caad7",
+      "sse_sha256": "540ec053ad79874cb53234378a17eac0f8f945d15e24b411b49838f168bfda22"
+    },
+    {
+      "id": "trial-02-ctx-4096-rep-1",
+      "raw_result_sha256": "3c26aa64c30f51d70f436df3329029f476c958c25d8f0a600354932004d2f88b",
+      "server_log_sha256": "7f3afddf822009c238f14e58f883f1288eb0b6aa2f11cf21eed9424d85a90f0c",
+      "sse_sha256": "a8ffeb41ed864f944ac7d36250b8fe35a5f71c4c517a66bd629c348f9faef6d4"
+    },
+    {
+      "id": "trial-03-ctx-8192-rep-1",
+      "raw_result_sha256": "91bd3228c8dd39a7e24bd6fd137a3cacb81bf62e2a2e3fb0455fb95ad82cc30b",
+      "server_log_sha256": "75ec51642dafdfe1c894d12093bcec492e506787214f5af45f7cc0dc7f616206",
+      "sse_sha256": "10a1f5e5f0ca0f3986c423225da9013d283938199935d03c4371e620d654b39a"
+    },
+    {
+      "id": "trial-04-ctx-8192-rep-2",
+      "raw_result_sha256": "d0ea37420c6fc91a1e88f6fc0ff518919757b21541e9707b86ecd150591fc163",
+      "server_log_sha256": "1197df7f001715f7ef966fcbd42e2b91943c374c43903fa8284a9d87b201672f",
+      "sse_sha256": "e68d8c1e132925dae579666b7d0567854369d127b020f28b4e5d486b6dff6b64"
+    },
+    {
+      "id": "trial-05-ctx-2048-rep-2",
+      "raw_result_sha256": "cdba43462a9916c25dab828c397157a10512de8e10a4ebe14a2e4c12f5d86b35",
+      "server_log_sha256": "9c4faa5fb6d024eaa9d53326cf7c608380fab775e3ab2057050cc93565770cf1",
+      "sse_sha256": "4dd73824aba52a265c368b2710fe442ac9485e1268348f0e1c870ceaa6723957"
+    },
+    {
+      "id": "trial-06-ctx-4096-rep-2",
+      "raw_result_sha256": "f13c590651fd9d6acfbb090853a9afa83a27f429a28c287da28f1fd5459f3ecf",
+      "server_log_sha256": "cfa7d9cc12a4a86018c8f01dded3847582d879e7d90131ba5fcbdb54cfe97b47",
+      "sse_sha256": "9bc4279e5018f336f012fea90498b8850684298e9a795d7e8622346849b142ba"
+    },
+    {
+      "id": "trial-07-ctx-4096-rep-3",
+      "raw_result_sha256": "dc88cd8b0e20b2424d8f6ce7c63b5d7ad0d1df38e1b8f7e20f08f805916b9ef1",
+      "server_log_sha256": "ede796c852af6b2df5bde37487b46f99a77e71e71cec2b7d8307c170a128feb7",
+      "sse_sha256": "e40ec8f26c4140e089ce8af49ec307c001ab131cf672e6bfe30fe53352770c68"
+    },
+    {
+      "id": "trial-08-ctx-8192-rep-3",
+      "raw_result_sha256": "81973bdf80ef5137265102e4aee6d9ec3737acd0b7a32c675845e5035d9a943e",
+      "server_log_sha256": "e22db622b5d098ea1b2989e8359403cc0c6f33b079c89e77cf6cafb454cb7e67",
+      "sse_sha256": "c4e21b3450e0b5eb581af6b54bc71ef8acbba2d8243f857c0db96e84d35b852d"
+    },
+    {
+      "id": "trial-09-ctx-2048-rep-3",
+      "raw_result_sha256": "506d6685113f87ba06d06ae1b3030527f8929fdbed06b222952b755b8cc0c90a",
+      "server_log_sha256": "59cd4a06bc4ba5e600c80d4b059651a2f88e5e6a5e4798c8bf0dd74f35288a4a",
+      "sse_sha256": "168940d70142a3e2c20c78761a04da82999613f236db429af22a9f6cfe33c0ae"
+    }
+  ],
+  "evidence_zip_sha256": "2452dda097af49cf172d8b4bc80b08ebe8ba4eaa7d8366bbc6aae0788f3cd921",
+  "evidence_zip_url": "/data/m4-context-evidence-20260910.zip",
+  "units": {
+    "rss": "bytes; ps raw is 1024-byte units, macOS time/getrusage peak is bytes",
+    "runtime_buffers": "MiB; overlap with RSS, never summed",
+    "system_compression": "physical bytes occupied by compressor, not logical bytes stored",
+    "swap": "system used bytes; includes other apps",
+    "time": "client monotonic seconds; startup separately reported"
+  },
+  "limitations": [
+    "One AC-powered host, ordinary apps retained.",
+    "System counters are not model-only causal measurements.",
+    "Signed compressor delta is peak sampled occupancy minus pre-load baseline median; a negative delta is possible.",
+    "Sampled peaks may miss transients.",
+    "16K is a time-budget censoring, not a maximum-context or OOM finding.",
+    "Scouts are excluded from all primary aggregates."
+  ]
+}

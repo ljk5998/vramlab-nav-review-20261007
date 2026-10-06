@@ -1,0 +1,159 @@
+VRAM Lab publication evidence: llama.cpp mixed q8_0/q4_0 KV cache on RTX 5060 Ti
+Measurement date: 2026-08-25 (Asia/Seoul)
+This file is generated deterministically from frozen, validator-approved evidence.
+
+[scope]
+One Windows/WSL2 host, one RTX 5060 Ti 8 GB, one llama.cpp commit, and one public Qwen3 1.7B GGUF.
+Primary matrix: 3 scout records plus 32 matrix records. PP uses three selected repetitions.
+TG retains four raw repetitions, excludes raw sample 0 as target-depth first-use warm-up, and reports raw samples 1..3.
+Telemetry covers the whole llama-bench process and is not a timed-region metric or attention-backend proof.
+
+[environment]
+host_os=Windows 11 Home build 26200.9168
+host_cpu=AMD Ryzen 7 7800X3D, 8 cores / 16 logical processors
+host_ram=16 GB DDR5-5200, one module
+guest=Ubuntu 24.04.4 LTS under WSL 2.7.12.0
+guest_kernel=6.18.33.2-microsoft-standard-WSL2
+guest_memory=7.2 GiB; swap=2.0 GiB
+gpu=NVIDIA GeForce RTX 5060 Ti 8 GB; compute capability 12.0 (sm_120)
+windows_driver=610.88
+cuda_toolkit=13.2.2; nvcc=13.2.86; Linux display-driver packages=none
+compiler=GCC/G++ 13.3.0; CMake 3.28.3; Ninja 1.11.1
+
+[frozen inputs]
+llama_cpp_commit=f280b26983ad0fdb705a0d9ebf0503e76f2899b0
+model_repository=ggml-org/Qwen3-1.7B-GGUF
+model_revision=daeb8e2d528a760970442092f6bf1e55c3b659eb
+model_file=Qwen3-1.7B-Q4_K_M.gguf
+model_bytes=1282439264
+model_sha256=d2387ca2dbfee2ffabce7120d3770dadca0b293052bc2f0e138fdc940d9bc7b5
+model_declared_context_length=40960
+
+[builds]
+common_flags=generator=Ninja; GGML_CUDA=ON; GGML_NATIVE=ON; GGML_BUILD_TESTS=OFF; LLAMA_CURL=OFF; CMAKE_CUDA_COMPILER=/usr/local/cuda-13.2/bin/nvcc; CMAKE_CUDA_ARCHITECTURES=120; Release; -j2
+default_flag=GGML_CUDA_FA_ALL_QUANTS=OFF
+all_quants_flag=GGML_CUDA_FA_ALL_QUANTS=ON
+default_build_wall=14:15.40
+all_quants_build_wall=17:18.93
+default_llama_bench_sha256=b435a2f4d0532b9549858ca9471e953a84516f685558b17626e3e41f57d9c46e
+all_quants_llama_bench_sha256=626cc3726b52f7e2d476a5926420d4bf79a24bc1b68794fc945f91a306e43621
+default_cmake_cache_sha256=8d49cd62d6a89ccba6e1b6ec573ec83ce290867d130d167f9427af1b1103e728
+all_quants_cmake_cache_sha256=bd3c3162789640f07f94cb5316ea957f5e72dcc9ca1fa4592a4576362fef2a78
+default_libggml_cuda_bytes=66752696
+default_libggml_cuda_sha256=b284cd6b22d4d4ced4940fe61ed9cb758a661e339681b7294f605925eec11478
+all_quants_libggml_cuda_bytes=85419176
+all_quants_libggml_cuda_sha256=90c1cda6cf63e7b0cdd1b1cca3e9f2d01bd57ea354e778c42f85bcf13a7ab7b3
+
+[prerequisite gates]
+source_commit=PASS; model_hash_and_bytes=PASS; toolkit_only=PASS; native_sm120_kernel=PASS
+default_f16_cuda_smoke=PASS; all_quants_f16_cuda_smoke=PASS
+pre_post_gpu_identity=PASS for both build smokes
+
+[untimed backend diagnostic v2]
+GGML_SCHED_DEBUG=2; mode=prompt_processing; prompt_tokens=64; repetitions=1; no_warmup=true
+default_q8_0_q8_0: FLASH_ATTN scheduler assignments CUDA=280 CPU=0 other=0
+default_q8_0_q4_0: FLASH_ATTN scheduler assignments CUDA=0 CPU=280 other=0
+all_quants_q8_0_q4_0: FLASH_ATTN scheduler assignments CUDA=280 CPU=0 other=0
+gpu_identity_pre_post_exact_match=true (hardware identifiers intentionally omitted from this public log)
+Buffer placement, JSON backends/flash_attn, warnings, and nvidia-smi telemetry are not dispatch proof.
+
+[scout gate]
+default_mixed_median_tok_s=136.994
+all_quants_mixed_median_tok_s=11387.4
+all_quants_over_default=83.12x
+scheduler_backend_gate=PASS; throughput_gate=PASS; full_matrix_branch=TAKEN
+
+[primary PP matrix]
+Format: id | length | build | K | V | outcome | raw/selected samples | selected median | wall | KV buffer | post health
+matrix-pp-p4096-default-kf16-vf16 | length=4096 | build=default | K=f16 | V=f16 | outcome=PASS | raw_samples_tok_s=12029.5,12077.8,12060.7 | selected_samples_tok_s=12029.5,12077.8,12060.7 | selected_median_tok_s=12060.7 | wall_s=2.052 | kv_buffer_mib=448.00 | post_gpu_health=PASS
+matrix-pp-p4096-default-kq8_0-vq8_0 | length=4096 | build=default | K=q8_0 | V=q8_0 | outcome=PASS | raw_samples_tok_s=11378.8,11435.4,11439.4 | selected_samples_tok_s=11378.8,11435.4,11439.4 | selected_median_tok_s=11435.4 | wall_s=2.180 | kv_buffer_mib=238.00 | post_gpu_health=PASS
+matrix-pp-p4096-default-kq4_0-vq4_0 | length=4096 | build=default | K=q4_0 | V=q4_0 | outcome=PASS | raw_samples_tok_s=10957.2,11014,11457.9 | selected_samples_tok_s=10957.2,11014,11457.9 | selected_median_tok_s=11014 | wall_s=2.154 | kv_buffer_mib=126.00 | post_gpu_health=PASS
+matrix-pp-p4096-default-kq8_0-vq4_0 | length=4096 | build=default | K=q8_0 | V=q4_0 | outcome=PASS | raw_samples_tok_s=132.415,133.251,131.581 | selected_samples_tok_s=132.415,133.251,131.581 | selected_median_tok_s=132.415 | wall_s=124.360 | kv_buffer_mib=182.00 | post_gpu_health=PASS
+matrix-pp-p4096-all-quants-kq8_0-vq4_0 | length=4096 | build=all-quants | K=q8_0 | V=q4_0 | outcome=PASS | raw_samples_tok_s=11242.9,11412,11449.6 | selected_samples_tok_s=11242.9,11412,11449.6 | selected_median_tok_s=11412 | wall_s=2.264 | kv_buffer_mib=182.00 | post_gpu_health=PASS
+matrix-pp-p16384-default-kf16-vf16 | length=16384 | build=default | K=f16 | V=f16 | outcome=PASS | raw_samples_tok_s=6994.68,6991.86,6979.35 | selected_samples_tok_s=6994.68,6991.86,6979.35 | selected_median_tok_s=6991.86 | wall_s=10.155 | kv_buffer_mib=1792.00 | post_gpu_health=PASS
+matrix-pp-p16384-default-kq8_0-vq8_0 | length=16384 | build=default | K=q8_0 | V=q8_0 | outcome=PASS | raw_samples_tok_s=6828.47,6717.2,6761.78 | selected_samples_tok_s=6828.47,6717.2,6761.78 | selected_median_tok_s=6761.78 | wall_s=10.442 | kv_buffer_mib=952.00 | post_gpu_health=PASS
+matrix-pp-p16384-default-kq4_0-vq4_0 | length=16384 | build=default | K=q4_0 | V=q4_0 | outcome=PASS | raw_samples_tok_s=6798.86,6775.53,6904.41 | selected_samples_tok_s=6798.86,6775.53,6904.41 | selected_median_tok_s=6798.86 | wall_s=10.338 | kv_buffer_mib=504.00 | post_gpu_health=PASS
+matrix-pp-p16384-default-kq8_0-vq4_0 | length=16384 | build=default | K=q8_0 | V=q4_0 | outcome=TIMEOUT_EXPECTED | raw_samples_tok_s=- | selected_samples_tok_s=- | selected_median_tok_s=- | wall_s=600.276 | kv_buffer_mib=728.00 | post_gpu_health=PASS
+matrix-pp-p16384-all-quants-kq8_0-vq4_0 | length=16384 | build=all-quants | K=q8_0 | V=q4_0 | outcome=PASS | raw_samples_tok_s=6784.09,6777.72,6858.06 | selected_samples_tok_s=6784.09,6777.72,6858.06 | selected_median_tok_s=6784.09 | wall_s=10.337 | kv_buffer_mib=728.00 | post_gpu_health=PASS
+matrix-pp-p16384-all-quants-kq8_0-vq8_0 | length=16384 | build=all-quants | K=q8_0 | V=q8_0 | outcome=PASS | raw_samples_tok_s=6750.78,6666.74,6800.43 | selected_samples_tok_s=6750.78,6666.74,6800.43 | selected_median_tok_s=6750.78 | wall_s=10.560 | kv_buffer_mib=952.00 | post_gpu_health=PASS | purpose=build_overhead_control
+matrix-pp-p32768-default-kf16-vf16 | length=32768 | build=default | K=f16 | V=f16 | outcome=PASS | raw_samples_tok_s=4244.34,4354.66,4293.93 | selected_samples_tok_s=4244.34,4354.66,4293.93 | selected_median_tok_s=4293.93 | wall_s=31.250 | kv_buffer_mib=3584.00 | post_gpu_health=PASS
+matrix-pp-p32768-default-kq8_0-vq8_0 | length=32768 | build=default | K=q8_0 | V=q8_0 | outcome=PASS | raw_samples_tok_s=4096.21,4099.51,4085.14 | selected_samples_tok_s=4096.21,4099.51,4085.14 | selected_median_tok_s=4096.21 | wall_s=32.851 | kv_buffer_mib=1904.00 | post_gpu_health=PASS
+matrix-pp-p32768-default-kq4_0-vq4_0 | length=32768 | build=default | K=q4_0 | V=q4_0 | outcome=PASS | raw_samples_tok_s=4148.03,4143.43,4118.14 | selected_samples_tok_s=4148.03,4143.43,4118.14 | selected_median_tok_s=4143.43 | wall_s=32.464 | kv_buffer_mib=1008.00 | post_gpu_health=PASS
+matrix-pp-p32768-default-kq8_0-vq4_0 | length=32768 | build=default | K=q8_0 | V=q4_0 | outcome=TIMEOUT_EXPECTED | raw_samples_tok_s=- | selected_samples_tok_s=- | selected_median_tok_s=- | wall_s=600.270 | kv_buffer_mib=1456.00 | post_gpu_health=PASS
+matrix-pp-p32768-all-quants-kq8_0-vq4_0 | length=32768 | build=all-quants | K=q8_0 | V=q4_0 | outcome=PASS | raw_samples_tok_s=4096.48,4090.05,4049.89 | selected_samples_tok_s=4096.48,4090.05,4049.89 | selected_median_tok_s=4090.05 | wall_s=32.956 | kv_buffer_mib=1456.00 | post_gpu_health=PASS
+primary_4k_mixed_speedup_all_quants_over_default=86.18x
+
+[primary TG matrix]
+TG raw sample 0 is retained but excluded; selected samples are raw[1:4].
+matrix-tg-d4096-n128-default-kf16-vf16 | length=4096 | build=default | K=f16 | V=f16 | outcome=PASS | raw_samples_tok_s=185.13,188.86,182.406,183.012 | selected_samples_tok_s=188.86,182.406,183.012 | selected_median_tok_s=183.012 | wall_s=4.467 | kv_buffer_mib=476.00 | post_gpu_health=PASS
+matrix-tg-d4096-n128-default-kq8_0-vq8_0 | length=4096 | build=default | K=q8_0 | V=q8_0 | outcome=PASS | raw_samples_tok_s=191.405,190.435,196.298,196.011 | selected_samples_tok_s=190.435,196.298,196.011 | selected_median_tok_s=196.011 | wall_s=4.068 | kv_buffer_mib=252.88 | post_gpu_health=PASS
+matrix-tg-d4096-n128-default-kq4_0-vq4_0 | length=4096 | build=default | K=q4_0 | V=q4_0 | outcome=PASS | raw_samples_tok_s=190.446,196.855,197.853,197.889 | selected_samples_tok_s=196.855,197.853,197.889 | selected_median_tok_s=197.853 | wall_s=3.852 | kv_buffer_mib=133.88 | post_gpu_health=PASS
+matrix-tg-d4096-n128-default-kq8_0-vq4_0 | length=4096 | build=default | K=q8_0 | V=q4_0 | outcome=PASS | raw_samples_tok_s=16.0913,16.0099,16.0328,15.9834 | selected_samples_tok_s=16.0099,16.0328,15.9834 | selected_median_tok_s=16.0099 | wall_s=64.152 | kv_buffer_mib=193.38 | post_gpu_health=PASS
+matrix-tg-d4096-n128-all-quants-kq8_0-vq4_0 | length=4096 | build=all-quants | K=q8_0 | V=q4_0 | outcome=PASS | raw_samples_tok_s=192.743,196.021,195.606,194.608 | selected_samples_tok_s=196.021,195.606,194.608 | selected_median_tok_s=195.606 | wall_s=3.944 | kv_buffer_mib=193.38 | post_gpu_health=PASS
+matrix-tg-d16384-n128-default-kf16-vf16 | length=16384 | build=default | K=f16 | V=f16 | outcome=PASS | raw_samples_tok_s=106.779,109.381,109.891,106.645 | selected_samples_tok_s=109.381,109.891,106.645 | selected_median_tok_s=109.381 | wall_s=10.675 | kv_buffer_mib=1820.00 | post_gpu_health=PASS
+matrix-tg-d16384-n128-default-kq8_0-vq8_0 | length=16384 | build=default | K=q8_0 | V=q8_0 | outcome=PASS | raw_samples_tok_s=135.451,136.208,132.421,137.171 | selected_samples_tok_s=136.208,132.421,137.171 | selected_median_tok_s=136.208 | wall_s=8.268 | kv_buffer_mib=966.88 | post_gpu_health=PASS
+matrix-tg-d16384-n128-default-kq4_0-vq4_0 | length=16384 | build=default | K=q4_0 | V=q4_0 | outcome=PASS | raw_samples_tok_s=136.571,134.332,133.626,131.43 | selected_samples_tok_s=134.332,133.626,131.43 | selected_median_tok_s=133.626 | wall_s=7.646 | kv_buffer_mib=511.88 | post_gpu_health=PASS
+matrix-tg-d16384-n128-default-kq8_0-vq4_0 | length=16384 | build=default | K=q8_0 | V=q4_0 | outcome=TIMEOUT_EXPECTED | raw_samples_tok_s=- | selected_samples_tok_s=- | selected_median_tok_s=- | wall_s=600.166 | kv_buffer_mib=739.38 | post_gpu_health=PASS
+matrix-tg-d16384-n128-all-quants-kq8_0-vq4_0 | length=16384 | build=all-quants | K=q8_0 | V=q4_0 | outcome=PASS | raw_samples_tok_s=136.182,138.431,137.188,133.925 | selected_samples_tok_s=138.431,137.188,133.925 | selected_median_tok_s=137.188 | wall_s=7.919 | kv_buffer_mib=739.38 | post_gpu_health=PASS
+matrix-tg-d16384-n128-all-quants-kq8_0-vq8_0 | length=16384 | build=all-quants | K=q8_0 | V=q8_0 | outcome=PASS | raw_samples_tok_s=135.298,135.07,133.526,137.347 | selected_samples_tok_s=135.07,133.526,137.347 | selected_median_tok_s=135.07 | wall_s=8.245 | kv_buffer_mib=966.88 | post_gpu_health=PASS | purpose=build_overhead_control
+matrix-tg-d32768-n128-default-kf16-vf16 | length=32768 | build=default | K=f16 | V=f16 | outcome=PASS | raw_samples_tok_s=69.5238,69.2849,67.705,68.8306 | selected_samples_tok_s=69.2849,67.705,68.8306 | selected_median_tok_s=68.8306 | wall_s=21.131 | kv_buffer_mib=3612.00 | post_gpu_health=PASS
+matrix-tg-d32768-n128-default-kq8_0-vq8_0 | length=32768 | build=default | K=q8_0 | V=q8_0 | outcome=PASS | raw_samples_tok_s=93.9709,98.0164,95.563,97.9884 | selected_samples_tok_s=98.0164,95.563,97.9884 | selected_median_tok_s=97.9884 | wall_s=16.799 | kv_buffer_mib=1918.88 | post_gpu_health=PASS
+matrix-tg-d32768-n128-default-kq4_0-vq4_0 | length=32768 | build=default | K=q4_0 | V=q4_0 | outcome=PASS | raw_samples_tok_s=98.313,98.8625,97.5114,99.485 | selected_samples_tok_s=98.8625,97.5114,99.485 | selected_median_tok_s=98.8625 | wall_s=15.452 | kv_buffer_mib=1015.88 | post_gpu_health=PASS
+matrix-tg-d32768-n128-default-kq8_0-vq4_0 | length=32768 | build=default | K=q8_0 | V=q4_0 | outcome=TIMEOUT_EXPECTED | raw_samples_tok_s=- | selected_samples_tok_s=- | selected_median_tok_s=- | wall_s=600.271 | kv_buffer_mib=1467.38 | post_gpu_health=PASS
+matrix-tg-d32768-n128-all-quants-kq8_0-vq4_0 | length=32768 | build=all-quants | K=q8_0 | V=q4_0 | outcome=PASS | raw_samples_tok_s=97.5728,95.9097,98.0852,98.0596 | selected_samples_tok_s=95.9097,98.0852,98.0596 | selected_median_tok_s=98.0596 | wall_s=15.911 | kv_buffer_mib=1467.38 | post_gpu_health=PASS
+primary_4k_mixed_speedup_all_quants_over_default=12.22x
+
+[KV buffer sizes, PP contexts]
+context | f16/f16 MiB | q8_0/q8_0 MiB | q4_0/q4_0 MiB | q8_0/q4_0 MiB
+4096 | 448.00 | 238.00 | 126.00 | 182.00
+16384 | 1792.00 | 952.00 | 504.00 | 728.00
+32768 | 3584.00 | 1904.00 | 1008.00 | 1456.00
+
+[timeout records]
+All four timeouts had exit_code=-15, empty stdout, no parsed samples, retained stderr/telemetry, and healthy post checks.
+matrix-pp-p16384-default-kq8_0-vq4_0 | timeout_seconds=600 | wall_s=600.276 | telemetry_samples=3002 | post_gpu_health=PASS
+matrix-pp-p32768-default-kq8_0-vq4_0 | timeout_seconds=600 | wall_s=600.270 | telemetry_samples=3002 | post_gpu_health=PASS
+matrix-tg-d16384-n128-default-kq8_0-vq4_0 | timeout_seconds=600 | wall_s=600.166 | telemetry_samples=3001 | post_gpu_health=PASS
+matrix-tg-d32768-n128-default-kq8_0-vq4_0 | timeout_seconds=600 | wall_s=600.271 | telemetry_samples=3002 | post_gpu_health=PASS
+
+[process-wide telemetry]
+matrix_temperature_c=39..76
+matrix_memory_used_mib=1327..6444
+matrix_power_draw_w=25.61..180.81
+These ranges span model load, warm-up/depth prefill, timed repetitions, and teardown.
+They are not timed-region metrics and do not classify the attention backend.
+
+[runtime-bound confirmation]
+This four-condition run is post hoc and does not replace or retroactively pre-bind the primary matrix.
+confirm-pp-p4096-default-kq8_0-vq4_0 | samples_tok_s=129.032,129.131,128.9 | median_tok_s=129.032 | outcome=PASS
+confirm-pp-p4096-all-quants-kq8_0-vq4_0 | samples_tok_s=11298.9,11346.1,11179 | median_tok_s=11298.9 | outcome=PASS
+confirm-tg-d4096-n128-default-kq8_0-vq4_0 | samples_tok_s=15.9368,15.9294,15.9739 | median_tok_s=15.9368 | outcome=PASS
+confirm-tg-d4096-n128-all-quants-kq8_0-vq4_0 | samples_tok_s=197.355,192.666,192.657 | median_tok_s=192.666 | outcome=PASS
+confirmation_pp_speedup=87.57x
+confirmation_tg_speedup=12.09x
+runtime_closure_pre_post_exact_match=true; confirmation_records=4/4 PASS
+
+[failed paths and deviations]
+1. The pinned llama-bench does not implement --version; the invalid-parameter output was retained.
+2. llama-cli writes its version to stderr; the first stdout-only correction failed, then the combined-stream probe passed before timing.
+3. Primary prerequisites pre-bound the thin launcher and CMake cache, not all loaded shared objects.
+   A post-matrix eight-file closure manifest documented that limitation; diagnostic v2 and confirmation pre-bound it.
+   The post-confirmation closure exactly matched the pre-confirmation closure. No retroactive full-matrix pre-bind is claimed.
+4. The four 16K/32K default-mixed PP/TG processes timed out. No throughput is inferred from empty stdout.
+
+[claim boundaries]
+The scheduler trace, not throughput or telemetry, proves CPU versus CUDA assignment for FLASH_ATTN in these runs.
+GGML_CUDA_FA_ALL_QUANTS=ON restored CUDA fused Flash Attention for the tested mixed q8_0/q4_0 path at this commit.
+There is no model-quality, retrieval-quality, output-equivalence, native-Windows, native-Linux, or cross-GPU claim.
+Build-time and binary-size differences describe this 8-core WSL host and these two clean build directories.
+
+[frozen evidence integrity]
+primary_manifest_sha256=c1f952043ed2c7b54ca8fcc6f69559cca5922c700113b74f64a57b6ac82185de
+validator_sha256=50a035f9337c9b26b816b7d3866c5e2f56eec708d93118988badab2645323b56
+validation_report_sha256=0dbe522382a7b6bb88709d7a34ed8e0d373d1af7cc8ca80cff357f3b68403495
+validated_summary_json_sha256=d611a431b4b41343d1cff7ce5e770a39a6ea2c644c5febdaa1f3f25c64bc02e6
+validated_summary_csv_sha256=f007b560ee9f126f768631adf9399314d4c5e6962e764619e50cedf9b299ce05
+backend_diagnostic_v2_sha256=23d53ff11e41985a30b541801275ae1332e3d4f522cccd67cb02058cb0b363e6
+runtime_closure_post_matrix_v1_sha256=0c87f323a459f92fb010f56c6e580763662c13c75917d1bee56a934d332d419f
+confirmation_manifest_sha256=5b57c70516262fd80cd9d847df0986050f721841e1152e01a2b278e0c1263a60
+runtime_closure_post_confirmation_v2_sha256=ced098fb31711527a4f5cdc8dd004464188cb464a4046b420df9096722892e56

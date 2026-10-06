@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Wsl2 on VRAM Lab</title>
+    <link>https://ljk5998.github.io/vramlab-nav-review-20261007/tags/wsl2/</link>
+    <description>Recent content in Wsl2 on VRAM Lab</description>
+    <image>
+      <title>VRAM Lab</title>
+      <url>https://ljk5998.github.io/images/og-local-ai.png</url>
+      <link>https://ljk5998.github.io/images/og-local-ai.png</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Oct 2026 00:00:00 +0900</lastBuildDate>
+    <atom:link href="https://ljk5998.github.io/vramlab-nav-review-20261007/tags/wsl2/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hugging Face Streaming on WSL2: Cache and Repeated Reads</title>
+      <link>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/hf-datasets-streaming-cache-wsl2/</link>
+      <pubDate>Fri, 02 Oct 2026 00:00:00 +0900</pubDate>
+      <guid>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/hf-datasets-streaming-cache-wsl2/</guid>
+      <description>streaming=True on WSL2: actual cache files, first-row latency, RAM and repeated HTTP reads. CSV and Parquet, 60 measured processes.</description>
+    </item>
+    <item>
+      <title>HF_DATASETS_CACHE on WSL2: Where the Other Files Go</title>
+      <link>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/hf-datasets-cache-wsl2/</link>
+      <pubDate>Sun, 06 Sep 2026 00:00:00 +0900</pubDate>
+      <guid>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/hf-datasets-cache-wsl2/</guid>
+      <description>Measured Hub downloads, Arrow files, import order, saved datasets, and cleanup on WSL2. Why HF_DATASETS_CACHE and cache_dir leave other files behind.</description>
+    </item>
+    <item>
+      <title>PyTorch 2.13 on RTX 5060 Ti: cu126 vs cu130 vs cu132</title>
+      <link>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/pytorch-2-13-rtx-5060-ti-cuda-wheels/</link>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 +0900</pubDate>
+      <guid>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/pytorch-2-13-rtx-5060-ti-cuda-wheels/</guid>
+      <description>All three PyTorch 2.13 wheels saw my RTX 5060 Ti, but cu126 mixed working dot/GEMM paths with missing native CUDA kernels.</description>
+    </item>
+    <item>
+      <title>torch.cuda.is_available() Returns False on WSL2: 4 Tested Causes</title>
+      <link>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/torch-cuda-is-available-false-wsl2/</link>
+      <pubDate>Mon, 17 Aug 2026 00:00:00 +0900</pubDate>
+      <guid>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/torch-cuda-is-available-false-wsl2/</guid>
+      <description>I tested four reasons torch.cuda.is_available() returns False on WSL2: a CUDA 13 driver mismatch, CPU-only wheel, hidden GPU, and wrong Python.</description>
+    </item>
+    <item>
+      <title>Fix WSL2 Resize Error Wsl/Service/0xc03a001a (2.7.3)</title>
+      <link>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/wsl-resize-error-0xc03a001a/</link>
+      <pubDate>Tue, 11 Aug 2026 00:00:00 +0900</pubDate>
+      <guid>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/wsl-resize-error-0xc03a001a/</guid>
+      <description>On WSL 2.7.3, compressed and sparse VHDX files booted but --resize failed with 0xc03a001a; clearing the attribute restored 9/9 retries.</description>
+    </item>
+    <item>
+      <title>Hugging Face Cache on WSL2: HF_HOME, /mnt/c, and Cleanup</title>
+      <link>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/move-huggingface-cache-wsl2/</link>
+      <pubDate>Fri, 07 Aug 2026 00:00:00 +0900</pubDate>
+      <guid>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/move-huggingface-cache-wsl2/</guid>
+      <description>I tested HF_HOME, HF_HUB_CACHE, symlinks, and /mnt/c on WSL2, then measured cleanup behavior with the current hf cache commands.</description>
+    </item>
+    <item>
+      <title>Shrink WSL2 ext4.vhdx in 2026: Sparse VHD vs diskpart, Measured</title>
+      <link>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/wsl2-sparse-vhd-cannot-compact/</link>
+      <pubDate>Thu, 06 Aug 2026 00:00:00 +0900</pubDate>
+      <guid>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/wsl2-sparse-vhd-cannot-compact/</guid>
+      <description>Deleted 20 GB inside WSL but ext4.vhdx stayed huge? Measured on WSL 2.7.3: fstrim no longer needed, sparse VHD gated as unsafe, diskpart rejects sparse files.</description>
+    </item>
+  </channel>
+</rss>

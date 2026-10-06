@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://ljk5998.github.io/vramlab-nav-review-20261007/sitemap.xml

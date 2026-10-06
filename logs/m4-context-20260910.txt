@@ -1,0 +1,26 @@
+VRAM Lab — MAC-CONTEXT (2026-09-10)
+Nine primary trials, no scouts included.
+Protocol SHA-256: 726c26e4fcbd1bc8d14842593a149f4509d7d2da7ca2ed4ee7a6781f87eb3524
+
+trial-01-ctx-2048-rep-1: input=1792 output=128 first-content=11.845196s complete=20.140547s RSS_peak=5467193344B KV=288.00MiB swap_delta=0B
+trial-02-ctx-4096-rep-1: input=3840 output=128 first-content=27.536262s complete=36.418041s RSS_peak=5770395648B KV=576.00MiB swap_delta=0B
+trial-03-ctx-8192-rep-1: input=7936 output=128 first-content=70.723981s complete=85.699291s RSS_peak=6376570880B KV=1152.00MiB swap_delta=0B
+trial-04-ctx-8192-rep-2: input=7936 output=128 first-content=97.160257s complete=119.480425s RSS_peak=6376194048B KV=1152.00MiB swap_delta=0B
+trial-05-ctx-2048-rep-2: input=1792 output=128 first-content=22.369724s complete=35.561026s RSS_peak=5467275264B KV=288.00MiB swap_delta=0B
+trial-06-ctx-4096-rep-2: input=3840 output=128 first-content=39.122993s complete=52.016225s RSS_peak=5771132928B KV=576.00MiB swap_delta=0B
+trial-07-ctx-4096-rep-3: input=3840 output=128 first-content=47.738861s complete=62.048241s RSS_peak=5766512640B KV=576.00MiB swap_delta=0B
+trial-08-ctx-8192-rep-3: input=7936 output=128 first-content=87.073595s complete=104.831532s RSS_peak=6377029632B KV=1152.00MiB swap_delta=0B
+trial-09-ctx-2048-rep-3: input=1792 output=128 first-content=14.710973s complete=23.779158s RSS_peak=5466587136B KV=288.00MiB swap_delta=0B
+
+Separate 16K scout: first-content timeout after 120s; no completed TTFT/throughput. No swap growth or sampled pressure warning.
+Interrupted cleanup: GGML_ASSERT([rsets->data count] == 0). time(1) peak unavailable.
+
+Representative observed startup lines (primary trial 1):
+0.00.333.451 I load_tensors: offloaded 37/37 layers to GPU
+0.00.333.455 I load_tensors:   CPU_Mapped model buffer size =   333.84 MiB
+0.00.333.456 I load_tensors:  MTL0_Mapped model buffer size =  4789.19 MiB
+0.00.335.057 I llama_context: n_ctx                 = 2048
+0.00.335.058 I llama_context: flash_attn            = enabled
+0.00.341.387 I llama_kv_cache:       MTL0 KV buffer size =   288.00 MiB
+0.00.354.837 I sched_reserve:       MTL0 compute buffer size =    32.78 MiB
+0.00.354.839 I sched_reserve:        CPU compute buffer size =     4.50 MiB

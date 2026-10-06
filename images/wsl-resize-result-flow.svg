@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="960" viewBox="0 0 500 800" role="img" aria-labelledby="title desc">
+  <title id="title">WSL 2.7.3 launch and resize experiment summary</title>
+  <desc id="desc">Two separate clone cohorts were tested with three clones per condition. All twelve launch probes succeeded. In the resize cohort, all three control resizes succeeded, while NTFS-compressed, raw-sparse, and WSL-managed sparse clones each failed three out of three times with error 0xc03a001a. Clearing the matching host-file state restored all nine resize attempts and all nine post-resize boot and df checks.</desc>
+
+  <style>
+    text {
+      fill: #172033;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      font-weight: 400;
+    }
+
+    .title { font-size: 26px; font-weight: 500; }
+    .subtitle { font-size: 15px; fill: #5f6b7a; }
+    .kicker { font-size: 14px; font-weight: 500; letter-spacing: 1.2px; fill: #5f6b7a; }
+    .panel-title { font-size: 20px; font-weight: 500; }
+    .body { font-size: 17px; }
+    .small { font-size: 14px; fill: #5f6b7a; }
+    .result { font-size: 22px; font-weight: 500; }
+    .launch-result { font-size: 19px; font-weight: 500; }
+    .row-result { font-size: 16px; }
+    .code { font-family: "Cascadia Mono", "SFMono-Regular", Consolas, monospace; }
+    .good { fill: #167647; }
+    .bad { fill: #b42318; }
+    .panel { fill: #f8fafc; stroke: #ccd3dc; stroke-width: 1.4; }
+    .rule { stroke: #ccd3dc; stroke-width: 1.1; }
+    .good-box { fill: #eaf8f0; stroke: #167647; stroke-width: 1.4; }
+    .action-box { fill: #edf5ff; stroke: #245ea8; stroke-width: 1.4; }
+    .arrow { stroke: #245ea8; stroke-width: 2; fill: none; }
+  </style>
+
+  <defs>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#245ea8"/>
+    </marker>
+  </defs>
+
+  <rect width="500" height="800" fill="#ffffff"/>
+
+  <text class="title" x="250" y="36" text-anchor="middle">WSL boots—but resize fails.</text>
+  <text class="subtitle" x="250" y="62" text-anchor="middle">Compressed and sparse VHDX files · WSL 2.7.3</text>
+  <text class="small" x="250" y="84" text-anchor="middle">Two separate clone cohorts · n=3 per condition</text>
+
+  <rect class="panel" x="20" y="104" width="460" height="170" rx="10"/>
+  <text class="kicker" x="42" y="130">COHORT A · 12 CLONES</text>
+  <text class="panel-title" x="42" y="158">Launch probe</text>
+  <text class="body" x="42" y="190">Control · Compressed</text>
+  <text class="body" x="42" y="216">Raw sparse · Managed sparse</text>
+  <rect class="good-box" x="290" y="151" width="168" height="70" rx="9"/>
+  <text class="launch-result good" x="374" y="184" text-anchor="middle">12 / 12 launched</text>
+  <text class="small" x="374" y="207" text-anchor="middle">/bin/true returned 0</text>
+  <text class="small" x="42" y="251">Launch-path success only—not a workload safety test.</text>
+
+  <line class="rule" x1="20" y1="300" x2="145" y2="300"/>
+  <text class="kicker" x="250" y="306" text-anchor="middle">SEPARATE CLONE COHORT</text>
+  <line class="rule" x1="355" y1="300" x2="480" y2="300"/>
+
+  <rect class="panel" x="20" y="326" width="460" height="421" rx="10"/>
+  <text class="kicker" x="42" y="352">COHORT B · 12 CLONES</text>
+  <text class="panel-title code" x="42" y="382">wsl --manage --resize 1100GB</text>
+  <text class="small" x="42" y="412">Host-file state</text>
+  <text class="small" x="458" y="412" text-anchor="end">First resize</text>
+
+  <line class="rule" x1="42" y1="424" x2="458" y2="424"/>
+  <text class="body" x="42" y="452">Control</text>
+  <text class="row-result good" x="458" y="452" text-anchor="end">3 / 3 success</text>
+
+  <line class="rule" x1="42" y1="465" x2="458" y2="465"/>
+  <text class="body" x="42" y="493">NTFS Compressed</text>
+  <text class="row-result bad" x="458" y="493" text-anchor="end">0 / 3 · 0xc03a001a</text>
+
+  <line class="rule" x1="42" y1="506" x2="458" y2="506"/>
+  <text class="body" x="42" y="534">Raw SparseFile</text>
+  <text class="row-result bad" x="458" y="534" text-anchor="end">0 / 3 · 0xc03a001a</text>
+
+  <line class="rule" x1="42" y1="547" x2="458" y2="547"/>
+  <text class="body" x="42" y="575">WSL-managed sparse</text>
+  <text class="row-result bad" x="458" y="575" text-anchor="end">0 / 3 · 0xc03a001a</text>
+
+  <rect class="action-box" x="90" y="605" width="320" height="48" rx="9"/>
+  <text class="body" x="250" y="635" text-anchor="middle">Clear the matching host-file state</text>
+  <path class="arrow" d="M 250 655 L 250 674" marker-end="url(#arrowhead)"/>
+
+  <rect class="good-box" x="58" y="684" width="384" height="48" rx="9"/>
+  <text class="result good" x="250" y="708" text-anchor="middle">9 / 9 resize retries succeeded</text>
+  <text class="small" x="250" y="726" text-anchor="middle">9 / 9 post-resize boot + df checks passed</text>
+
+  <text class="small" x="250" y="778" text-anchor="middle">Windows 11 Home 25H2 · NTFS · EFS not tested</text>
+</svg>

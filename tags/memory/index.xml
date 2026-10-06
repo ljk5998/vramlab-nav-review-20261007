@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Memory on VRAM Lab</title>
+    <link>https://ljk5998.github.io/vramlab-nav-review-20261007/tags/memory/</link>
+    <description>Recent content in Memory on VRAM Lab</description>
+    <image>
+      <title>VRAM Lab</title>
+      <url>https://ljk5998.github.io/images/og-local-ai.png</url>
+      <link>https://ljk5998.github.io/images/og-local-ai.png</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 10 Sep 2026 00:00:00 +0900</lastBuildDate>
+    <atom:link href="https://ljk5998.github.io/vramlab-nav-review-20261007/tags/memory/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Long Prompts on a 16GB M4: Memory, Swap, and First Response</title>
+      <link>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/m4-16gb-long-context-memory/</link>
+      <pubDate>Thu, 10 Sep 2026 00:00:00 +0900</pubDate>
+      <guid>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/m4-16gb-long-context-memory/</guid>
+      <description>Qwen3-8B on a 16GB M4: nine Metal runs measure first response, RSS, KV memory, compression and swap. A separate 16K scout hit a 120-second cutoff.</description>
+    </item>
+  </channel>
+</rss>

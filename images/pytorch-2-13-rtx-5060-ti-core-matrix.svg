@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 430" role="img" aria-labelledby="core-title core-desc">
+<title id="core-title">PyTorch 2.13 CUDA wheel core matrix on an RTX 5060 Ti</title>
+<desc id="core-desc"> Original eager core matrix. cu126: metadata 3 of 3 passed, 1-byte alloc/fill/read 0 of 3 passed, FP32 vector add, n=4096 0 of 3 passed, FP32 dot, n=1 3 of 3 passed, FP32 dot, n=4 3 of 3 passed, FP32 dot, n=32 3 of 3 passed, FP32 dot, n=1024 3 of 3 passed, FP32 (x*y).sum(), n=4 0 of 3 passed, FP32 ones GEMM, 512x512 0 of 3 passed, BF16 ones GEMM, 512x512 0 of 3 passed. cu130: metadata 3 of 3 passed, 1-byte alloc/fill/read 3 of 3 passed, FP32 vector add, n=4096 3 of 3 passed, FP32 dot, n=1 3 of 3 passed, FP32 dot, n=4 3 of 3 passed, FP32 dot, n=32 3 of 3 passed, FP32 dot, n=1024 3 of 3 passed, FP32 (x*y).sum(), n=4 3 of 3 passed, FP32 ones GEMM, 512x512 3 of 3 passed, BF16 ones GEMM, 512x512 3 of 3 passed. cu132: metadata 3 of 3 passed, 1-byte alloc/fill/read 3 of 3 passed, FP32 vector add, n=4096 3 of 3 passed, FP32 dot, n=1 3 of 3 passed, FP32 dot, n=4 3 of 3 passed, FP32 dot, n=32 3 of 3 passed, FP32 dot, n=1024 3 of 3 passed, FP32 (x*y).sum(), n=4 3 of 3 passed, FP32 ones GEMM, 512x512 3 of 3 passed, BF16 ones GEMM, 512x512 3 of 3 passed. Compile and post-hoc probes are excluded.</desc>
+<style>
+.background{fill:#ffffff}.title{font:700 25px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#111827}
+.subtitle{font:14px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#4b5563}
+.column{font:600 12px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#374151}
+.row{font:700 15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#111827}
+.cell-main{font:700 17px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#ffffff}
+.cell-sub{font:700 11px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#ffffff;letter-spacing:.04em}
+.pass{fill:#166534;stroke:#14532d;stroke-width:2}.fail{fill:#991b1b;stroke:#7f1d1d;stroke-width:2}
+.footnote{font:12px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#4b5563}
+</style>
+<rect class="background" width="1160" height="430"/>
+<text class="title" x="30" y="40">PyTorch 2.13 eager CUDA core matrix</text>
+<text class="subtitle" x="30" y="67">RTX 5060 Ti (compute capability 12.0) - three fresh processes per cell</text>
+<text class="column" x="236" y="98" text-anchor="middle"><tspan x="236" dy="0">Metadata</tspan></text>
+<text class="column" x="332" y="98" text-anchor="middle"><tspan x="332" dy="0">Alloc +</tspan><tspan x="332" dy="15">fill/read</tspan></text>
+<text class="column" x="428" y="98" text-anchor="middle"><tspan x="428" dy="0">Vector add</tspan><tspan x="428" dy="15">n=4096</tspan></text>
+<text class="column" x="524" y="98" text-anchor="middle"><tspan x="524" dy="0">Dot</tspan><tspan x="524" dy="15">n=1</tspan></text>
+<text class="column" x="620" y="98" text-anchor="middle"><tspan x="620" dy="0">Dot</tspan><tspan x="620" dy="15">n=4</tspan></text>
+<text class="column" x="716" y="98" text-anchor="middle"><tspan x="716" dy="0">Dot</tspan><tspan x="716" dy="15">n=32</tspan></text>
+<text class="column" x="812" y="98" text-anchor="middle"><tspan x="812" dy="0">Dot</tspan><tspan x="812" dy="15">n=1024</tspan></text>
+<text class="column" x="908" y="98" text-anchor="middle"><tspan x="908" dy="0">Mul + sum</tspan><tspan x="908" dy="15">n=4</tspan></text>
+<text class="column" x="1004" y="98" text-anchor="middle"><tspan x="1004" dy="0">FP32 GEMM</tspan><tspan x="1004" dy="15">512x512</tspan></text>
+<text class="column" x="1100" y="98" text-anchor="middle"><tspan x="1100" dy="0">BF16 GEMM</tspan><tspan x="1100" dy="15">512x512</tspan></text>
+<text class="row" x="30" y="185" text-anchor="start">cu126 - 15/30</text>
+<g role="img" aria-label="cu126 metadata: 3 of 3 passed">
+<rect class="pass" x="190" y="150" width="92" height="60" rx="7"/>
+<text class="cell-main" x="236" y="176" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="236" y="195" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu126 1-byte alloc/fill/read: 0 of 3 passed">
+<rect class="fail" x="286" y="150" width="92" height="60" rx="7"/>
+<text class="cell-main" x="332" y="176" text-anchor="middle">0/3</text>
+<text class="cell-sub" x="332" y="195" text-anchor="middle">FAIL</text>
+</g>
+<g role="img" aria-label="cu126 FP32 vector add, n=4096: 0 of 3 passed">
+<rect class="fail" x="382" y="150" width="92" height="60" rx="7"/>
+<text class="cell-main" x="428" y="176" text-anchor="middle">0/3</text>
+<text class="cell-sub" x="428" y="195" text-anchor="middle">FAIL</text>
+</g>
+<g role="img" aria-label="cu126 FP32 dot, n=1: 3 of 3 passed">
+<rect class="pass" x="478" y="150" width="92" height="60" rx="7"/>
+<text class="cell-main" x="524" y="176" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="524" y="195" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu126 FP32 dot, n=4: 3 of 3 passed">
+<rect class="pass" x="574" y="150" width="92" height="60" rx="7"/>
+<text class="cell-main" x="620" y="176" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="620" y="195" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu126 FP32 dot, n=32: 3 of 3 passed">
+<rect class="pass" x="670" y="150" width="92" height="60" rx="7"/>
+<text class="cell-main" x="716" y="176" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="716" y="195" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu126 FP32 dot, n=1024: 3 of 3 passed">
+<rect class="pass" x="766" y="150" width="92" height="60" rx="7"/>
+<text class="cell-main" x="812" y="176" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="812" y="195" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu126 FP32 (x*y).sum(), n=4: 0 of 3 passed">
+<rect class="fail" x="862" y="150" width="92" height="60" rx="7"/>
+<text class="cell-main" x="908" y="176" text-anchor="middle">0/3</text>
+<text class="cell-sub" x="908" y="195" text-anchor="middle">FAIL</text>
+</g>
+<g role="img" aria-label="cu126 FP32 ones GEMM, 512x512: 0 of 3 passed">
+<rect class="fail" x="958" y="150" width="92" height="60" rx="7"/>
+<text class="cell-main" x="1004" y="176" text-anchor="middle">0/3</text>
+<text class="cell-sub" x="1004" y="195" text-anchor="middle">FAIL</text>
+</g>
+<g role="img" aria-label="cu126 BF16 ones GEMM, 512x512: 0 of 3 passed">
+<rect class="fail" x="1054" y="150" width="92" height="60" rx="7"/>
+<text class="cell-main" x="1100" y="176" text-anchor="middle">0/3</text>
+<text class="cell-sub" x="1100" y="195" text-anchor="middle">FAIL</text>
+</g>
+<text class="row" x="30" y="259" text-anchor="start">cu130 - 30/30</text>
+<g role="img" aria-label="cu130 metadata: 3 of 3 passed">
+<rect class="pass" x="190" y="224" width="92" height="60" rx="7"/>
+<text class="cell-main" x="236" y="250" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="236" y="269" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu130 1-byte alloc/fill/read: 3 of 3 passed">
+<rect class="pass" x="286" y="224" width="92" height="60" rx="7"/>
+<text class="cell-main" x="332" y="250" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="332" y="269" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu130 FP32 vector add, n=4096: 3 of 3 passed">
+<rect class="pass" x="382" y="224" width="92" height="60" rx="7"/>
+<text class="cell-main" x="428" y="250" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="428" y="269" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu130 FP32 dot, n=1: 3 of 3 passed">
+<rect class="pass" x="478" y="224" width="92" height="60" rx="7"/>
+<text class="cell-main" x="524" y="250" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="524" y="269" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu130 FP32 dot, n=4: 3 of 3 passed">
+<rect class="pass" x="574" y="224" width="92" height="60" rx="7"/>
+<text class="cell-main" x="620" y="250" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="620" y="269" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu130 FP32 dot, n=32: 3 of 3 passed">
+<rect class="pass" x="670" y="224" width="92" height="60" rx="7"/>
+<text class="cell-main" x="716" y="250" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="716" y="269" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu130 FP32 dot, n=1024: 3 of 3 passed">
+<rect class="pass" x="766" y="224" width="92" height="60" rx="7"/>
+<text class="cell-main" x="812" y="250" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="812" y="269" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu130 FP32 (x*y).sum(), n=4: 3 of 3 passed">
+<rect class="pass" x="862" y="224" width="92" height="60" rx="7"/>
+<text class="cell-main" x="908" y="250" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="908" y="269" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu130 FP32 ones GEMM, 512x512: 3 of 3 passed">
+<rect class="pass" x="958" y="224" width="92" height="60" rx="7"/>
+<text class="cell-main" x="1004" y="250" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="1004" y="269" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu130 BF16 ones GEMM, 512x512: 3 of 3 passed">
+<rect class="pass" x="1054" y="224" width="92" height="60" rx="7"/>
+<text class="cell-main" x="1100" y="250" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="1100" y="269" text-anchor="middle">PASS</text>
+</g>
+<text class="row" x="30" y="333" text-anchor="start">cu132 - 30/30</text>
+<g role="img" aria-label="cu132 metadata: 3 of 3 passed">
+<rect class="pass" x="190" y="298" width="92" height="60" rx="7"/>
+<text class="cell-main" x="236" y="324" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="236" y="343" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu132 1-byte alloc/fill/read: 3 of 3 passed">
+<rect class="pass" x="286" y="298" width="92" height="60" rx="7"/>
+<text class="cell-main" x="332" y="324" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="332" y="343" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu132 FP32 vector add, n=4096: 3 of 3 passed">
+<rect class="pass" x="382" y="298" width="92" height="60" rx="7"/>
+<text class="cell-main" x="428" y="324" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="428" y="343" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu132 FP32 dot, n=1: 3 of 3 passed">
+<rect class="pass" x="478" y="298" width="92" height="60" rx="7"/>
+<text class="cell-main" x="524" y="324" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="524" y="343" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu132 FP32 dot, n=4: 3 of 3 passed">
+<rect class="pass" x="574" y="298" width="92" height="60" rx="7"/>
+<text class="cell-main" x="620" y="324" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="620" y="343" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu132 FP32 dot, n=32: 3 of 3 passed">
+<rect class="pass" x="670" y="298" width="92" height="60" rx="7"/>
+<text class="cell-main" x="716" y="324" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="716" y="343" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu132 FP32 dot, n=1024: 3 of 3 passed">
+<rect class="pass" x="766" y="298" width="92" height="60" rx="7"/>
+<text class="cell-main" x="812" y="324" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="812" y="343" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu132 FP32 (x*y).sum(), n=4: 3 of 3 passed">
+<rect class="pass" x="862" y="298" width="92" height="60" rx="7"/>
+<text class="cell-main" x="908" y="324" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="908" y="343" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu132 FP32 ones GEMM, 512x512: 3 of 3 passed">
+<rect class="pass" x="958" y="298" width="92" height="60" rx="7"/>
+<text class="cell-main" x="1004" y="324" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="1004" y="343" text-anchor="middle">PASS</text>
+</g>
+<g role="img" aria-label="cu132 BF16 ones GEMM, 512x512: 3 of 3 passed">
+<rect class="pass" x="1054" y="298" width="92" height="60" rx="7"/>
+<text class="cell-main" x="1100" y="324" text-anchor="middle">3/3</text>
+<text class="cell-sub" x="1100" y="343" text-anchor="middle">PASS</text>
+</g>
+<rect class="pass" x="30" y="376" width="24" height="18" rx="3"/><text class="footnote" x="63" y="390">3/3 passed</text>
+<rect class="fail" x="165" y="376" width="24" height="18" rx="3"/><text class="footnote" x="198" y="390">0/3 passed</text>
+<text class="footnote" x="320" y="390">Original matrix only; compile and post-hoc correction probes are excluded.</text>
+<text class="footnote" x="30" y="416">The original alloc cell allocated one byte, then filled and read it. Core counts are probe records, not a compatibility percentage.</text>
+</svg>

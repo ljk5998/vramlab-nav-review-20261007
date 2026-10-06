@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Cuda on VRAM Lab</title>
+    <link>https://ljk5998.github.io/vramlab-nav-review-20261007/tags/cuda/</link>
+    <description>Recent content in Cuda on VRAM Lab</description>
+    <image>
+      <title>VRAM Lab</title>
+      <url>https://ljk5998.github.io/images/og-local-ai.png</url>
+      <link>https://ljk5998.github.io/images/og-local-ai.png</link>
+    </image>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Aug 2026 00:00:00 +0900</lastBuildDate>
+    <atom:link href="https://ljk5998.github.io/vramlab-nav-review-20261007/tags/cuda/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>llama.cpp Mixed KV Cache on RTX 5060 Ti: q8_0/q4_0 Test</title>
+      <link>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/llama-cpp-mixed-kv-cache-rtx-5060-ti/</link>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 +0900</pubDate>
+      <guid>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/llama-cpp-mixed-kv-cache-rtx-5060-ti/</guid>
+      <description>On an RTX 5060 Ti, llama.cpp&amp;#39;s default CUDA build sent mixed q8_0/q4_0 Flash Attention to CPU; one build flag restored CUDA and an 86x PP gap.</description>
+    </item>
+    <item>
+      <title>PyTorch 2.13 on RTX 5060 Ti: cu126 vs cu130 vs cu132</title>
+      <link>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/pytorch-2-13-rtx-5060-ti-cuda-wheels/</link>
+      <pubDate>Mon, 24 Aug 2026 00:00:00 +0900</pubDate>
+      <guid>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/pytorch-2-13-rtx-5060-ti-cuda-wheels/</guid>
+      <description>All three PyTorch 2.13 wheels saw my RTX 5060 Ti, but cu126 mixed working dot/GEMM paths with missing native CUDA kernels.</description>
+    </item>
+    <item>
+      <title>torch.cuda.is_available() Returns False on WSL2: 4 Tested Causes</title>
+      <link>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/torch-cuda-is-available-false-wsl2/</link>
+      <pubDate>Mon, 17 Aug 2026 00:00:00 +0900</pubDate>
+      <guid>https://ljk5998.github.io/vramlab-nav-review-20261007/posts/torch-cuda-is-available-false-wsl2/</guid>
+      <description>I tested four reasons torch.cuda.is_available() returns False on WSL2: a CUDA 13 driver mismatch, CPU-only wheel, hidden GPU, and wrong Python.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,262 @@
+VRAM Lab publication evidence: PyTorch 2.13 CUDA wheels on RTX 5060 Ti
+Measurement date: 2026-08-24 (Asia/Seoul)
+This file is generated deterministically from frozen experiment evidence.
+
+[scope]
+One Windows host, one WSL2 guest, one installed environment per wheel, and three fresh Python processes per cell.
+Correctness and compatibility were measured. The preregistered timing protocol was not run, so this log makes no performance comparison.
+
+[wrapper audit]
+wrapper_records=195
+pass_records=150
+expected_exception_records=45
+expected_no_kernel_exceptions=33
+expected_missing_c_compiler_exceptions=6
+expected_missing_python_header_exceptions=6
+timeout_records=0
+signal_records=0
+json_parse_failures=0
+post_failure_health_checks=45
+post_failure_health_temperature_c=41..60
+summary_files=10
+
+[environment]
+host_os=Windows 11 Home 25H2, build 26200.9168
+host_cpu=AMD Ryzen 7 7800X3D, 8 cores / 16 logical processors
+host_ram=16GB DDR5-5200, single module
+host_gpu=NVIDIA GeForce RTX 5060 Ti
+gpu_architecture=Blackwell, compute capability 12.0 (sm_120)
+gpu_compute_capability=12.0
+gpu_memory_bytes=8546484224
+gpu_memory_pytorch_mib=8150.5625
+gpu_memory_nvidia_smi_mib=8151
+windows_nvidia_driver=610.88
+power_plan=Balanced
+wsl_version=2.7.12.0
+guest_release=Ubuntu 24.04.4 LTS
+guest_kernel=6.18.33.2-microsoft-standard-WSL2
+guest_python=3.12.3
+guest_memory_bytes=7731843072
+guest_root_filesystem_bytes=1081101176832
+guest_root_available_bytes_at_phase0=1024509526016
+phase0_capture_utc=2026-08-23T17:21:06Z
+phase0_gpu_bridge=present
+phase0_nvcc=absent
+phase0_linux_display_driver_packages=none
+note=cuda-toolkit package names below are wheel-managed Python packages, not a system CUDA Toolkit install
+
+[wheel installs]
+cu126: torch=2.13.0+cu126; embedded_cuda=12.6; triton=3.7.1; pip=24.0
+cu126: official_index=https://download.pytorch.org/whl/cu126
+cu126: resolved_wheel=torch-2.13.0+cu126-cp312-cp312-manylinux_2_28_x86_64.whl
+cu126: resolved_wheel_sha256=8695f3c6b7966d44560275b90c5c28e5091ba33ddbb1ab33b2173782ca1e9145
+cu126: pip_check=No broken requirements found.
+cu126: cuda_available=true; device_count=1; compiled_arches=sm_50,sm_60,sm_70,sm_75,sm_80,sm_86,sm_90
+cu130: torch=2.13.0+cu130; embedded_cuda=13.0; triton=3.7.1; pip=24.0
+cu130: official_index=https://download.pytorch.org/whl/cu130
+cu130: resolved_wheel=torch-2.13.0+cu130-cp312-cp312-manylinux_2_28_x86_64.whl
+cu130: resolved_wheel_sha256=8db7338e6895c3d4bd89a02ff4209507d1f0cf2ffeb3b898538b5a07d1ea8c1e
+cu130: pip_check=No broken requirements found.
+cu130: cuda_available=true; device_count=1; compiled_arches=sm_75,sm_80,sm_86,sm_90,sm_100,sm_120
+cu132: torch=2.13.0+cu132; embedded_cuda=13.2; triton=3.7.1; pip=24.0
+cu132: official_index=https://download.pytorch.org/whl/cu132
+cu132: resolved_wheel=torch-2.13.0+cu132-cp312-cp312-manylinux_2_28_x86_64.whl
+cu132: resolved_wheel_sha256=4c1800e216b46bae03483bc94dd73a23ea43c265ab51f865e28070ca045d10a8
+cu132: pip_check=No broken requirements found.
+cu132: cuda_available=true; device_count=1; compiled_arches=sm_75,sm_80,sm_86,sm_90,sm_100,sm_120
+
+[full pip freezes]
+-- cu126 --
+cuda-bindings==12.9.7
+cuda-pathfinder==1.6.0
+cuda-toolkit==12.6.3
+filelock==3.32.3
+fsspec==2026.7.0
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+mpmath==1.3.0
+networkx==3.6.1
+nvidia-cublas-cu12==12.6.4.1
+nvidia-cuda-cupti-cu12==12.6.80
+nvidia-cuda-nvrtc-cu12==12.6.85
+nvidia-cuda-runtime-cu12==12.6.77
+nvidia-cudnn-cu12==9.10.2.21
+nvidia-cufft-cu12==11.3.0.4
+nvidia-cufile-cu12==1.11.1.6
+nvidia-curand-cu12==10.3.7.77
+nvidia-cusolver-cu12==11.7.1.2
+nvidia-cusparse-cu12==12.5.4.2
+nvidia-cusparselt-cu12==0.7.1
+nvidia-nccl-cu12==2.29.3
+nvidia-nvjitlink-cu12==12.6.85
+nvidia-nvshmem-cu12==3.4.5
+nvidia-nvtx-cu12==12.6.77
+pip==24.0
+setuptools==78.1.0
+sympy==1.14.0
+torch==2.13.0+cu126
+triton==3.7.1
+typing_extensions==4.16.0
+-- cu130 --
+cuda-bindings==13.3.1
+cuda-pathfinder==1.6.0
+cuda-toolkit==13.0.3.0
+filelock==3.32.3
+fsspec==2026.7.0
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+mpmath==1.3.0
+networkx==3.6.1
+nvidia-cublas==13.1.1.3
+nvidia-cuda-cupti==13.0.85
+nvidia-cuda-nvrtc==13.0.88
+nvidia-cuda-runtime==13.0.96
+nvidia-cudnn-cu13==9.20.0.48
+nvidia-cufft==12.0.0.61
+nvidia-cufile==1.15.1.6
+nvidia-curand==10.4.0.35
+nvidia-cusolver==12.0.4.66
+nvidia-cusparse==12.6.3.3
+nvidia-cusparselt-cu13==0.8.1
+nvidia-nccl-cu13==2.29.7
+nvidia-nvjitlink==13.3.33
+nvidia-nvshmem-cu13==3.4.5
+nvidia-nvtx==13.0.85
+pip==24.0
+setuptools==78.1.0
+sympy==1.14.0
+torch==2.13.0+cu130
+triton==3.7.1
+typing_extensions==4.16.0
+-- cu132 --
+cuda-bindings==13.3.1
+cuda-pathfinder==1.6.0
+cuda-toolkit==13.2.1
+filelock==3.32.3
+fsspec==2026.7.0
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+mpmath==1.3.0
+networkx==3.6.1
+nvidia-cublas==13.4.0.1
+nvidia-cuda-cupti==13.2.75
+nvidia-cuda-nvrtc==13.2.78
+nvidia-cuda-runtime==13.2.75
+nvidia-cudnn-cu13==9.20.0.48
+nvidia-cufft==12.2.0.46
+nvidia-cufile==1.17.1.22
+nvidia-curand==10.4.2.55
+nvidia-cusolver==12.2.0.1
+nvidia-cusparse==12.7.10.1
+nvidia-cusparselt-cu13==0.8.1
+nvidia-nccl-cu13==2.29.7
+nvidia-nvjitlink==13.3.33
+nvidia-nvshmem-cu13==3.4.5
+nvidia-nvtx==13.2.75
+pip==24.0
+setuptools==78.1.0
+sympy==1.14.0
+torch==2.13.0+cu132
+triton==3.7.1
+typing_extensions==4.16.0
+
+[preregistered gate]
+cu130_positive_control=9/9 PASS (metadata, 1-byte alloc/fill/read, FP32 512x512 GEMM)
+original_allocator_scout=default 3/3 PASS; expandable_segments 3/3 PASS; cudaMallocAsync 3/3 PASS
+original_allocator_scout_actual_request=1 byte; the runner carried size=1024 but operation_alloc ignored it
+expandable_error_999_signature=false
+topic_pivot_recommended=false
+post_gate_gpu_health_check=PASS
+
+[original eager core matrix]
+Each cell is three fresh processes. Compile is secondary and excluded from this matrix.
+operation | cu126 | cu130 | cu132
+----------|-------|-------|------
+metadata | 3/3 PASS | 3/3 PASS | 3/3 PASS
+1-byte alloc/fill/read | 0/3 FAIL | 3/3 PASS | 3/3 PASS
+FP32 vector add, n=4096 | 0/3 FAIL | 3/3 PASS | 3/3 PASS
+FP32 dot, n=1 | 3/3 PASS | 3/3 PASS | 3/3 PASS
+FP32 dot, n=4 | 3/3 PASS | 3/3 PASS | 3/3 PASS
+FP32 dot, n=32 | 3/3 PASS | 3/3 PASS | 3/3 PASS
+FP32 dot, n=1024 | 3/3 PASS | 3/3 PASS | 3/3 PASS
+FP32 (x*y).sum(), n=4 | 0/3 FAIL | 3/3 PASS | 3/3 PASS
+FP32 ones GEMM, 512x512 | 0/3 FAIL | 3/3 PASS | 3/3 PASS
+BF16 ones GEMM, 512x512 | 0/3 FAIL | 3/3 PASS | 3/3 PASS
+TOTAL | 15/30 | 30/30 | 30/30
+OVERALL | 75/90 | |
+
+[original core signatures]
+cu126: torch.cuda.is_available() was true, device_count was 1, and the RTX 5060 Ti reported capability 12.0.
+cu126: compiled_arches=sm_50,sm_60,sm_70,sm_75,sm_80,sm_86,sm_90
+cu130: compiled_arches=sm_75,sm_80,sm_86,sm_90,sm_100,sm_120
+cu132: compiled_arches=sm_75,sm_80,sm_86,sm_90,sm_100,sm_120
+cu126 exact failure line for all five 0/3 operation families:
+CUDA error: no kernel image is available for execution on the device
+cu126 failing families: 1-byte alloc/fill/read; FP32 vector add, n=4096; FP32 (x*y).sum(), n=4; FP32 ones GEMM, 512x512; BF16 ones GEMM, 512x512
+All original dot cells passed 3/3 for n=1, 4, 32, and 1024 on every wheel.
+Do not convert the 15/30 cu126 count into a percentage-compatibility claim; the cells are not weighted workload samples.
+
+[post-hoc path disambiguation]
+These runs describe why the original cu126 cells split. They do not replace the original core matrix.
+operation | cu126 | cu130
+----------|-------|------
+allocate one byte, synchronize, no fill | 3/3 PASS | 3/3 PASS
+allocate, GPU fill, read back | 0/3 FAIL | 3/3 PASS
+CPU byte to GPU and back | 3/3 PASS | 3/3 PASS
+CPU-prepared FP32 vector, GPU add | 0/3 FAIL | 3/3 PASS
+CPU-prepared FP32 512x512 GEMM | 3/3 PASS | 3/3 PASS
+cu126 allocation alone passed; its GPU fill and vector-add kernels failed with the no-kernel-image signature.
+cu126 host-to-device copies and the CPU-prepared FP32 GEMM passed. No mechanism beyond these observed paths is inferred here.
+
+[post-hoc audit corrections]
+Corrected 1024-byte cu130 allocator scout:
+default: 3/3 PASS; requested=1024 bytes; allocated=1024 bytes; reserved=2097152 bytes
+expandable_segments: 3/3 PASS; requested=1024 bytes; allocated=1024 bytes; reserved=2097152 bytes
+cudaMallocAsync: 3/3 PASS; requested=1024 bytes; allocated=1024 bytes; reserved=33554432 bytes
+CUDA driver attribute 110 (GPU_DIRECT_RDMA_WITH_CUDA_VMM_SUPPORTED): values=0,0,0; query calls passed 3/3.
+GPU-generated n=4 dot setup:
+cu126: 0/3 FAIL; torch.rand(device=cuda) failed before torch.dot ran
+cu130: 3/3 PASS
+cu132: 3/3 PASS
+Corrected BF16 random-reference GEMM, 128x128, CPU-prepared quantized inputs:
+cu126: 3/3 PASS; max_abs_error=0.1247406005859375; max_abs_reference=51.5284423828125; tolerance=1.03056884765625
+cu130: 3/3 PASS; max_abs_error=0.1247406005859375; max_abs_reference=51.5284423828125; tolerance=1.03056884765625
+cu132: 3/3 PASS; max_abs_error=0.1247406005859375; max_abs_reference=51.5284423828125; tolerance=1.03056884765625
+
+[protocol deviations and disposition]
+1. The original allocator scout was labeled size=1024 by the runner, but operation_alloc always requested one byte. The corrected 1024-byte scout is reported separately above.
+2. The original BF16 core probe used 512x512 ones and an exact expected value, not the planned seeded random inputs and CPU FP32 reference. The corrected 128x128 reference probe is separate.
+3. The original dot sweep generated inputs on CPU and copied them to CUDA. The GPU-generated-input follow-up is separate, and cu126 failed during input generation before dot.
+4. The preregistered timing protocol was not run. No timing or speed result is publishable from this experiment.
+
+[secondary torch.compile prerequisite stages]
+The same elementwise compile smoke used n=4096 and three fresh processes per wheel at each stage.
+stage | cu126 | cu130 | cu132
+------|-------|-------|------
+minimal guest, no C compiler | 0/3 FAIL | 0/3 FAIL | 0/3 FAIL
+after g++ only | 0/3 FAIL | 0/3 FAIL | 0/3 FAIL
+after g++ plus Python headers | 0/3 FAIL | 3/3 PASS | 3/3 PASS
+stage 0 cu130/cu132 exact first line:
+RuntimeError: Failed to find C compiler. Please specify via CC environment variable or set triton.knobs.build.impl.
+stage 1 cu130/cu132 compiler line after removing the temporary source path:
+fatal error: Python.h: No such file or directory
+cu126 stopped at eager torch.linspace(device=cuda) with the no-kernel-image signature at all three stages, before compiled code could run.
+cu130/cu132 produced correct outputs with maximum_error=0.0 after both the C compiler and Python headers were present.
+C compiler package evidence: g++=4:13.2.0-7ubuntu1; g++-13=13.3.0-6ubuntu2~24.04.1; gcc=4:13.2.0-7ubuntu1; gcc-13=13.3.0-6ubuntu2~24.04.1; libc6-dev=2.39-0ubuntu8.8
+Python header package evidence: libpython3.12-dev=3.12.3-1ubuntu0.15; python3-dev=3.12.3-0ubuntu2.1; python3.12-dev=3.12.3-1ubuntu0.15
+
+[claim boundaries]
+The results show repeatability on one host, not independent-machine generality.
+A true CUDA availability flag is enumeration/initialization evidence, not proof that every operation path has a compatible kernel.
+cu130 and cu132 passed every tested eager core cell; this is not a claim that every PyTorch or CUDA kernel works.
+cu132 was tested for correctness only; no speed or stability advantage is claimed.
+The reported RTX 5060 Ti GPU-rand-to-dot crash from another PyTorch/CUDA build did not reproduce in the GPU-generated-input cu130/cu132 follow-up on this fixed host and build. cu126 failed during torch.rand before dot ran, and the issue is not called fixed everywhere.
+
+[frozen evidence integrity]
+generator_input_file_count=285
+generator_input_manifest_sha256=ddff511e0b1b0241cbb2a3fa94edd5002be8383399ae9a96055b11398b053dac
+data/results/gate-summary.json sha256=c72314adc845ffde2284fb883f7d980aff07d1bfc17df5650ff8e4c1025af40c
+data/results/matrix-summary.json sha256=0f90d09bf36d52d56224faf2da2524032f920a24740994a555a297532dbee18a
+data/results/disambiguation-summary.json sha256=fad75f017b36b6bc4f015e67d2192f2dac0e393b25b28e895218e003f5c51fe0
+data/results/audit-corrections-summary.json sha256=bf4ec395ee83fd02e055f7cd7ed50c97442239ee265cfe8eedfac4adfadf22e7
+data/results/compile-headers-summary.json sha256=60ee137f50cfb0eddb0a1817f5f8ea93f2ae6448e5e642e59588fd033c335f8b

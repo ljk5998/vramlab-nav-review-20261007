@@ -1,0 +1,44 @@
+<svg width="720" height="380" viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,Segoe UI,Roboto,sans-serif" role="img" aria-label="Cold cache timings by cache location: /mnt/c cost hides at model load and appears at first forward pass" style="max-width:100%;height:auto">
+<rect x="0.5" y="0.5" width="719" height="379" rx="8" fill="#fcfcfb" stroke="#e2e2df"/>
+<text x="46" y="24" font-size="13" font-weight="600" fill="#0b0b0b">Cold-cache timings by location (seconds, N=5 median) — WSL2, same SSD</text>
+<line x1="46" y1="330.0" x2="706" y2="330.0" stroke="#d8d8d4"/>
+<text x="40" y="333.5" font-size="10.5" fill="#52514e" text-anchor="end">0</text>
+<line x1="46" y1="259.0" x2="706" y2="259.0" stroke="#ececea"/>
+<text x="40" y="262.5" font-size="10.5" fill="#52514e" text-anchor="end">3</text>
+<line x1="46" y1="188.0" x2="706" y2="188.0" stroke="#ececea"/>
+<text x="40" y="191.5" font-size="10.5" fill="#52514e" text-anchor="end">6</text>
+<line x1="46" y1="117.0" x2="706" y2="117.0" stroke="#ececea"/>
+<text x="40" y="120.5" font-size="10.5" fill="#52514e" text-anchor="end">9</text>
+<line x1="46" y1="46.0" x2="706" y2="46.0" stroke="#ececea"/>
+<text x="40" y="49.5" font-size="10.5" fill="#52514e" text-anchor="end">12</text>
+<path d="M73.5,330.0 v-12.1 q0,-3 3,-3 h28.0 q3,0 3,3 v12.1 z" fill="#2a78d6"><title>dd read (943 MB) · ext4: 0.64 s</title></path>
+<path d="M111.5,330.0 v-16.9 q0,-3 3,-3 h28.0 q3,0 3,3 v16.9 z" fill="#eb6834"><title>dd read (943 MB) · ext4 via symlink: 0.84 s</title></path>
+<path d="M149.5,330.0 v-114.1 q0,-3 3,-3 h28.0 q3,0 3,3 v114.1 z" fill="#1baf7a"><title>dd read (943 MB) · /mnt/c (9p): 4.95 s</title></path>
+<text x="166.5" y="207.9" font-size="10" font-weight="600" fill="#52514e" text-anchor="middle">4.95</text>
+<text x="128.5" y="346.0" font-size="10.5" fill="#52514e" text-anchor="middle">dd read</text>
+<text x="128.5" y="358.0" font-size="10.5" fill="#52514e" text-anchor="middle">(943 MB)</text>
+<path d="M238.5,330.0 v-60.4 q0,-3 3,-3 h28.0 q3,0 3,3 v60.4 z" fill="#2a78d6"><title>tokenizer load · ext4: 2.68 s</title></path>
+<path d="M276.5,330.0 v-61.8 q0,-3 3,-3 h28.0 q3,0 3,3 v61.8 z" fill="#eb6834"><title>tokenizer load · ext4 via symlink: 2.74 s</title></path>
+<path d="M314.5,330.0 v-75.1 q0,-3 3,-3 h28.0 q3,0 3,3 v75.1 z" fill="#1baf7a"><title>tokenizer load · /mnt/c (9p): 3.3 s</title></path>
+<text x="293.5" y="346.0" font-size="10.5" fill="#52514e" text-anchor="middle">tokenizer</text>
+<text x="293.5" y="358.0" font-size="10.5" fill="#52514e" text-anchor="middle">load</text>
+<path d="M403.5,330.0 v-135.0 q0,-3 3,-3 h28.0 q3,0 3,3 v135.0 z" fill="#2a78d6"><title>model load (CPU, mmap) · ext4: 5.83 s</title></path>
+<path d="M441.5,330.0 v-135.0 q0,-3 3,-3 h28.0 q3,0 3,3 v135.0 z" fill="#eb6834"><title>model load (CPU, mmap) · ext4 via symlink: 5.83 s</title></path>
+<path d="M479.5,330.0 v-138.8 q0,-3 3,-3 h28.0 q3,0 3,3 v138.8 z" fill="#1baf7a"><title>model load (CPU, mmap) · /mnt/c (9p): 5.99 s</title></path>
+<text x="496.5" y="183.2" font-size="10" font-weight="600" fill="#52514e" text-anchor="middle">5.99</text>
+<text x="458.5" y="346.0" font-size="10.5" fill="#52514e" text-anchor="middle">model load</text>
+<text x="458.5" y="358.0" font-size="10.5" fill="#52514e" text-anchor="middle">(CPU, mmap)</text>
+<path d="M568.5,330.0 v-178.5 q0,-3 3,-3 h28.0 q3,0 3,3 v178.5 z" fill="#2a78d6"><title>load + first forward · ext4: 7.67 s</title></path>
+<text x="585.5" y="143.5" font-size="10" font-weight="600" fill="#52514e" text-anchor="middle">7.67</text>
+<path d="M606.5,330.0 v-179.5 q0,-3 3,-3 h28.0 q3,0 3,3 v179.5 z" fill="#eb6834"><title>load + first forward · ext4 via symlink: 7.71 s</title></path>
+<path d="M644.5,330.0 v-258.8 q0,-3 3,-3 h28.0 q3,0 3,3 v258.8 z" fill="#1baf7a"><title>load + first forward · /mnt/c (9p): 11.06 s</title></path>
+<text x="661.5" y="63.2" font-size="10" font-weight="600" fill="#52514e" text-anchor="middle">11.06</text>
+<text x="623.5" y="346.0" font-size="10.5" fill="#52514e" text-anchor="middle">load + first</text>
+<text x="623.5" y="358.0" font-size="10.5" fill="#52514e" text-anchor="middle">forward</text>
+<rect x="46" y="32" width="10" height="10" rx="2" fill="#2a78d6"/>
+<text x="60" y="41" font-size="11" fill="#0b0b0b">ext4</text>
+<rect x="98" y="32" width="10" height="10" rx="2" fill="#eb6834"/>
+<text x="112" y="41" font-size="11" fill="#0b0b0b">ext4 via symlink</text>
+<rect x="216" y="32" width="10" height="10" rx="2" fill="#1baf7a"/>
+<text x="230" y="41" font-size="11" fill="#0b0b0b">/mnt/c (9p)</text>
+</svg>

@@ -1,0 +1,63 @@
+{
+  "status": "pass",
+  "candidate_sha256": "491c7acbdd6e8317406380cbcd46a404547de329a2e0add21aa6c69be948a6be",
+  "recipe_sha256": "ef7c996b71a59e7b5ab15bd196b714f496aa0b5298c00c4106f51676e7ebd385",
+  "bash_blocks": 5,
+  "scope": "Fresh source checkout, venv, build, model copy and server process on the same Mac; existing model bytes reused with hash verification; exact candidate assets served from loopback mirror.",
+  "replay_status": "pass",
+  "exit_code": 0,
+  "fresh_binary_sha256": "c81176043044984201e728a3aad14ec8474f2cb8f63e086214dd5c72e263d80f",
+  "reader_result_sha256": "cf5988895542cc54152ee0d7ecb223da1ee1302e6d19e780dc3cd74b17f8cb3b",
+  "console_sha256": "296be1c380a5d3a6bcfcf8a68377b3ea2b815878daffbdc9972ba77493a1e8de",
+  "validation": {
+    "status": "reader_raw_checks_passed",
+    "primary_eligible": false,
+    "limitations": [
+      "Scope: reader; protocol-bound: True",
+      "Validation checks this run; aggregate and reader replay are separate gates.",
+      "System counters include other apps; sampled peaks can miss transients.",
+      "Three repeats and clean-room reproduction are separate future gates."
+    ],
+    "metrics": {
+      "evaluated_tokens": 1792,
+      "generated_tokens": 128,
+      "server_timings": {
+        "cache_n": 0,
+        "prompt_n": 1792,
+        "prompt_ms": 14970.282,
+        "prompt_per_token_ms": 8.353952008928571,
+        "prompt_per_second": 119.70382388254278,
+        "predicted_n": 128,
+        "predicted_ms": 9385.67,
+        "predicted_per_token_ms": 73.90291338582678,
+        "predicted_per_second": 13.531266281469517
+      },
+      "client_first_content_latency_s": 14.97307820800006,
+      "client_completion_s": 24.359386916999938,
+      "sampled_peak_rss_bytes": 5467881472,
+      "time_peak_rss_bytes": 5467897856,
+      "baseline_swap_bytes": 0,
+      "swap_used_peak_delta_bytes": 0,
+      "max_sampling_gap_s": 1.0039840829999775,
+      "runtime_buffers_MiB": {
+        "CPU_Mapped_model_MiB": 333.84,
+        "MTL0_Mapped_model_MiB": 4789.19,
+        "MTL0_KV_MiB": 288.0,
+        "MTL0_compute_MiB": 32.78,
+        "CPU_compute_MiB": 4.5
+      },
+      "model_load_and_startup_s": 0.6346876669999801,
+      "baseline_compressed_bytes": 1457684480,
+      "peak_compressed_bytes": 1457668096,
+      "peak_compressed_delta_bytes": -16384,
+      "end_compressed_delta_bytes": -393216,
+      "end_swap_delta_bytes": 0,
+      "pageouts_delta_bytes": 0,
+      "swapouts_delta_bytes": 0
+    }
+  },
+  "public_artifacts_served": "Exact candidate static/code on 127.0.0.1:18743; toolkit SHA-256 asserted by unchanged article code.",
+  "replay_scope": "Verbatim five Bash blocks; same Mac, fresh venv/source/build/model-copy/process. Exact candidate toolkit served via local HTTP. Model bytes copied and hash-checked, not downloaded again.",
+  "archive_sha256": "f7724e37e2bc4cd6a63dd9133edfe77aa59f52e732441b7118ad2b09ba76cc4e",
+  "archive_url": "/data/m4-context-reader-20260910.zip"
+}

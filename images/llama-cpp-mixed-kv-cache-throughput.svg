@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1160 560" role="img" aria-labelledby="mixed-title mixed-desc">
+<title id="mixed-title">llama.cpp mixed q8_0/q4_0 KV-cache throughput at 4K</title>
+<desc id="mixed-desc">At 4K, primary prompt processing medians were 132.415 tokens per second for the default mixed build and 11412 for all-quants, a 86.18 times speedup. Token-generation medians were 16.0099 and 195.606, a 12.22 times speedup. Runtime-bound confirmation medians were PP 129.032 and 11298.9, and TG 15.9368 and 192.666.</desc>
+<style>
+.bg{fill:#fff}.title{font:700 26px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#111827}
+.sub{font:14px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#4b5563}
+.panel{fill:#f9fafb;stroke:#d1d5db;stroke-width:1.5}.head{font:700 18px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#111827}
+.label{font:600 14px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#374151}.value{font:700 15px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#111827}.value.inside{fill:#fff}
+.tick{font:11px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#6b7280}.axis{stroke:#9ca3af;stroke-width:1}
+.default{fill:#b45309}.allq{fill:#0369a1}.badge{font:700 18px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#075985}
+.foot{font:13px system-ui,-apple-system,'Segoe UI',sans-serif;fill:#374151}
+</style>
+<rect class="bg" width="1160" height="560"/>
+<text class="title" x="30" y="42">Mixed q8_0 K / q4_0 V KV cache at 4K</text>
+<text class="sub" x="30" y="69">RTX 5060 Ti · llama.cpp f280b2698 · median of three selected samples · panel scales differ</text>
+<rect class="panel" x="30" y="95" width="535" height="350" rx="10"/>
+<rect class="panel" x="595" y="95" width="535" height="350" rx="10"/>
+<text class="head" x="55" y="130">Prompt processing (tokens/s)</text>
+<text class="head" x="620" y="130">Token generation after 4K prefill (tokens/s)</text>
+<line class="axis" x1="125" y1="375" x2="535" y2="375"/>
+<line class="axis" x1="690" y1="375" x2="1100" y2="375"/>
+<text class="label" x="55" y="205">Default</text><rect class="default" x="125" y="180" width="4.52" height="42" rx="4"/>
+<text class="value" x="138.52" y="207">132.415</text>
+<text class="label" x="55" y="285">All-quants</text><rect class="allq" x="125" y="260" width="389.91" height="42" rx="4"/>
+<text class="value inside" x="506.91" y="287" text-anchor="end">11412</text>
+<text class="badge" x="330" y="340" text-anchor="middle">86.2× faster</text>
+<text class="tick" x="125" y="395" text-anchor="middle">0</text><text class="tick" x="262" y="395" text-anchor="middle">4k</text>
+<text class="tick" x="398" y="395" text-anchor="middle">8k</text><text class="tick" x="535" y="395" text-anchor="middle">12k</text>
+<text class="label" x="620" y="205">Default</text><rect class="default" x="690" y="180" width="31.26" height="42" rx="4"/>
+<text class="value" x="730.26" y="207">16.0099</text>
+<text class="label" x="620" y="285">All-quants</text><rect class="allq" x="690" y="260" width="381.90" height="42" rx="4"/>
+<text class="value inside" x="1063.90" y="287" text-anchor="end">195.606</text>
+<text class="badge" x="895" y="340" text-anchor="middle">12.2× faster</text>
+<text class="tick" x="690" y="395" text-anchor="middle">0</text><text class="tick" x="827" y="395" text-anchor="middle">70</text>
+<text class="tick" x="963" y="395" text-anchor="middle">140</text><text class="tick" x="1100" y="395" text-anchor="middle">210</text>
+<text class="foot" x="30" y="480">PP64 scheduler trace: default mixed = CPU; all-quants mixed = CUDA. TG throughput is not direct dispatch proof.</text>
+<text class="foot" x="30" y="510">Runtime-bound confirmation: PP 129.032 → 11298.9 (87.6×); TG 15.9368 → 192.666 (12.1×).</text>
+<text class="foot" x="30" y="540">TG raw sample 0 was retained as target-depth first-use warm-up and excluded from the three-sample median.</text>
+</svg>

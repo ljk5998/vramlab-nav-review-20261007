@@ -1,0 +1,205 @@
+VRAMLab publication log
+Experiment: torch.cuda.is_available() on WSL2 with PyTorch 2.13 cu130 and cu126
+Date: 2026-08-17 (Asia/Seoul)
+
+SCOPE
+-----
+This is a sanitized publication log derived from preserved JSON, package
+reports, and host-state records. Private raw records contain local
+paths and a Windows process list, so they are not copied here.
+
+The measured result belongs to one host, NVIDIA driver 572.60, WSL 2.7.3.0,
+and PyTorch 2.13.0. A driver upgrade was not part of the experiment.
+
+ENVIRONMENT
+-----------
+Host OS:        Windows 25H2, build 26200.9168
+Registry label: Windows 10 Home (compatibility ProductName string)
+WSL:            2.7.3.0
+WSL kernel:     6.6.114.1-1 / 6.6.114.1-microsoft-standard-WSL2
+Guest:          Ubuntu 24.04 LTS (clean Canonical rootfs derivative)
+Python:         3.12.3
+GPU:            NVIDIA GeForce RTX 3060 Laptop GPU, 6,144 MiB
+Windows driver: 572.60
+WSL nvidia-smi: driver 572.60, CUDA Version 12.8
+PyTorch:        2.13.0
+Run ID:         run-20260816T192746Z-10
+
+The CUDA Version field printed by nvidia-smi is the maximum CUDA version
+reported by the driver. No native/system CUDA Toolkit or nvcc was installed
+in the guest. The PyTorch CUDA environments did include wheel-managed CUDA
+runtime packages.
+
+INSTALL RESOLUTION
+------------------
+pip configuration and proxy variables were cleared, PIP_CONFIG_FILE was
+/dev/null, and every install used --no-cache-dir.
+
+Environment     Index                                      Installed torch
+pypi-default    https://pypi.org/simple                    2.13.0+cu130
+cu126           https://download.pytorch.org/whl/cu126     2.13.0+cu126
+cpu             https://download.pytorch.org/whl/cpu       2.13.0+cpu
+
+Core install commands:
+
+  python -m pip install --no-cache-dir torch==2.13.0 \
+    --index-url https://pypi.org/simple
+
+  python -m pip install --no-cache-dir torch==2.13.0 \
+    --index-url https://download.pytorch.org/whl/cu126
+
+  python -m pip install --no-cache-dir torch==2.13.0 \
+    --index-url https://download.pytorch.org/whl/cpu
+
+All three pip check runs returned "No broken requirements found."
+
+DESIGN
+------
+The three wheel variants were installed in separate virtual environments.
+Every probe ran in a fresh Python process. Each condition was repeated three
+times in this order:
+
+  1. control-cu126
+  2. pypi-default-pre
+  3. cpu-wheel
+  4. hidden-device (CUDA_VISIBLE_DEVICES=-1)
+  5. wrong-interpreter (CPU Python with the cu126 environment on PATH)
+  6. recovery-cu126
+  7. pypi-default-post
+
+The first cu126 condition was a hard gate: all three processes had to report
+CUDA available and complete a real CUDA tensor operation before the remaining
+conditions were allowed to run. The final cu126 and PyPI conditions bracketed
+the other probes to detect state drift.
+
+The CUDA execution probe allocated two 512 x 512 matrices of ones on cuda:0,
+multiplied them, synchronized, and checked that every output value was 512.
+Peak allocated CUDA memory reported in each successful run was 11,929,088
+bytes. This was a functional smoke test, not a performance benchmark.
+
+RESULT MATRIX
+-------------
+Condition             Runs  torch build    CUDA built  available  devices  forced init / CUDA execution
+control-cu126           3/3  2.13.0+cu126   yes         true       1        tensor check passed 3/3
+pypi-default-pre        3/3  2.13.0+cu130   yes         false      1        driver too old 3/3
+cpu-wheel               3/3  2.13.0+cpu     no          false      0        not compiled with CUDA 3/3
+hidden-device           3/3  2.13.0+cu126   yes         false      0        no CUDA GPUs available 3/3
+wrong-interpreter       3/3  2.13.0+cpu     no          false      0        not compiled with CUDA 3/3
+recovery-cu126          3/3  2.13.0+cu126   yes         true       1        tensor check passed 3/3
+pypi-default-post       3/3  2.13.0+cu130   yes         false      1        driver too old 3/3
+
+Primary result:
+
+  PyPI default cu130: is_available false 6/6, specific driver evidence 6/6.
+  Same 2.13.0 base release, cu126: is_available true 6/6,
+  CUDA tensor check passed 6/6.
+
+The PyPI wheel still reported one CUDA device while is_available was false.
+Device enumeration alone was therefore not a successful initialization test
+on this host.
+
+PER-RUN RECORD
+--------------
+condition              rep  built  runtime  available  count  outcome
+control-cu126           R1   yes    12.6     true       1      tensor-pass
+control-cu126           R2   yes    12.6     true       1      tensor-pass
+control-cu126           R3   yes    12.6     true       1      tensor-pass
+pypi-default-pre        R1   yes    13.0     false      1      driver-too-old-12080
+pypi-default-pre        R2   yes    13.0     false      1      driver-too-old-12080
+pypi-default-pre        R3   yes    13.0     false      1      driver-too-old-12080
+cpu-wheel               R1   no     none     false      0      not-compiled-with-CUDA
+cpu-wheel               R2   no     none     false      0      not-compiled-with-CUDA
+cpu-wheel               R3   no     none     false      0      not-compiled-with-CUDA
+hidden-device           R1   yes    12.6     false      0      no-CUDA-GPUs-available
+hidden-device           R2   yes    12.6     false      0      no-CUDA-GPUs-available
+hidden-device           R3   yes    12.6     false      0      no-CUDA-GPUs-available
+wrong-interpreter       R1   no     none     false      0      not-compiled-with-CUDA
+wrong-interpreter       R2   no     none     false      0      not-compiled-with-CUDA
+wrong-interpreter       R3   no     none     false      0      not-compiled-with-CUDA
+recovery-cu126          R1   yes    12.6     true       1      tensor-pass
+recovery-cu126          R2   yes    12.6     true       1      tensor-pass
+recovery-cu126          R3   yes    12.6     true       1      tensor-pass
+pypi-default-post       R1   yes    13.0     false      1      driver-too-old-12080
+pypi-default-post       R2   yes    13.0     false      1      driver-too-old-12080
+pypi-default-post       R3   yes    13.0     false      1      driver-too-old-12080
+
+EXACT PYPI DEFAULT ERROR
+------------------------
+torch.cuda.is_available() returned false and emitted this warning in every
+PyPI-default process:
+
+  CUDA initialization: The NVIDIA driver on your system is too old
+  (found version 12080).
+
+A forced torch.cuda.init() then raised RuntimeError with the same driver-too-old
+message and recommended either updating the GPU driver or installing a PyTorch
+build compiled for the installed driver.
+
+DIAGNOSTIC ROWS
+---------------
+Observed diagnosis       torch.version.cuda  CUDA built  device count  is_available
+driver/runtime mismatch  13.0                yes         1             false
+CPU wheel                none                no          0             false
+hidden GPU               12.6                yes         0             false
+wrong interpreter        none                no          0             false
+working cu126             12.6                yes         1             true
+
+The wrong-interpreter condition deliberately put the cu126 venv first on PATH
+but executed the CPU venv's Python. `which python` and `sys.executable` pointed
+to different environments, reproducing a common shell/notebook diagnosis.
+
+VALIDATION
+----------
+C0 hard gate:       passed, no errors
+Final hard gate:    passed, no errors
+Expected probes:    21
+Observed probes:    21
+PyPI evidence:      driver-too-old warning + forced-init error in all 6 runs
+Publication gate:   eligible-for-driver-mismatch-claim
+Experiment exit:    0
+Guest duration:     337.984 seconds
+
+The validator accepted the driver-mismatch claim only when all six pre/post
+PyPI records had torch 2.13.0+cu130, CUDA 13.0, is_available false, a failed
+forced initialization, and specific driver-insufficient evidence, while both
+cu126 cohorts passed all CUDA tensor checks.
+
+HOST SAFETY CHECK
+-----------------
+Windows driver, WSL version, GPU identity, registered distro list, default
+distro, and the operational Ubuntu VHDX fingerprint were unchanged before and
+after the run. The experiment distro was stopped with an exact-target command.
+No Windows reboot, driver change, WSL update, global WSL shutdown, or Linux GPU
+driver installation was used.
+
+Host free space before: 46,112,378,880 bytes
+Host free space after:  30,836,224,000 bytes
+Required final reserve: 10,737,418,240 bytes
+
+SETUP EXCLUSIONS
+----------------
+Two earlier unbooted import preparations encountered a transient Windows VHDX
+read lock during evidence capture. A later first-boot attempt stopped at a
+strict PID 1 harness gate before its sentinel, package setup, or PyTorch work.
+Those attempts are preserved as setup diagnostics and are not counted in the
+21 probe runs. The final run used a newly imported clean rootfs and recorded a
+successful PID 1, APT policy, credential/proxy, and frozen-harness gate before
+network package installation.
+
+LIMITS
+------
+- One Windows PC, one RTX 3060 Laptop GPU, driver 572.60, WSL 2.7.3.0.
+- Three fresh processes per condition, but one disposable distro and one set
+  of virtual environments; these are repeated checks, not independent hosts.
+- No driver upgrade was tested. R580+ is an official compatibility route for
+  CUDA 13.x, but this experiment measured only the cu126 fallback on 572.60.
+- Not tested: conda, Docker, multi-GPU, other PyTorch releases, other Windows
+  drivers, native Linux, macOS/MPS, AMD/ROCm, long training, or performance.
+- nvidia-smi visibility and device_count did not prove runtime initialization.
+
+RECORD INTEGRITY
+----------------
+A separate post-run check found no mismatches across the private 78-file
+snapshot. EXPERIMENT_DESIGN.md was later updated with the completion summary.
+The completion note and audited disposable-clone cleanup records are later
+administrative files outside that snapshot.
